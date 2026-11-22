@@ -1934,13 +1934,8 @@ def main():
 main()`
         },
         {
-            name: "Member 3",
-            title: "Python Program 3",
-            description: "Add the third member's program description.",
-            code: `# MEMBER 3 PYTHON PROGRAM
-
-# Paste your Python code here
-print("Hello from Member 3!")`
+            name: "Salvador, Adrian Raven P.",
+            code: `-`
 
         },
         {
