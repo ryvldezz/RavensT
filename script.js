@@ -212,7 +212,7 @@ if (menuToggle && navLinks) {
     const startingPage = location.hash.replace("#", "");
 
     showPage(
-        validPages.includes(startingPage) ?startingPage : "Home",
+        validPages.includes(startingPage) ? startingPage : "home",
         false
     );
 
@@ -739,7 +739,6 @@ if (currentYear) {
     });
 })();
 
-
 /* =========================================
    12. SNAKE GAME ONLINE PLAYER PROFILES
    Shared players and leaderboard using Supabase
@@ -757,14 +756,6 @@ if (currentYear) {
 
     if (!window.supabase) {
         console.error("Supabase library was not loaded.");
-        return;
-    }
-
-    if (
-        SUPABASE_URL.includes("PASTE_YOUR") ||
-        SUPABASE_ANON_KEY.includes("PASTE_YOUR")
-    ) {
-        console.error("Please add your Supabase URL and anon key.");
         return;
     }
 
@@ -805,29 +796,51 @@ if (currentYear) {
     }
 
 
-    // Public visitors must not be able to delete shared players.
-    if (removeButton) {
-        removeButton.hidden = true;
-    }
-
-
     // =====================================
     // 3. PLAYER DATA
     // =====================================
 
     let players = [];
     let selectedPlayerId = "";
+    let currentUserId = null;
 
+
+    // =====================================
+    // 4. STATUS
+    // =====================================
 
     function setStatus(message) {
+
         if (onlineStatus) {
             onlineStatus.textContent = message;
         }
+
     }
 
 
     // =====================================
-    // 4. DISPLAY PLAYERS
+    // 5. REMOVE BUTTON VISIBILITY
+    // =====================================
+
+    function updateRemoveButton() {
+
+        if (!removeButton) return;
+
+        const selectedPlayer = players.find(function (player) {
+            return player.id === playerSelect.value;
+        });
+
+        const canRemove =
+            selectedPlayer &&
+            selectedPlayer.owner_id === currentUserId;
+
+        removeButton.hidden = !canRemove;
+
+    }
+
+
+    // =====================================
+    // 6. DISPLAY PLAYERS
     // =====================================
 
     function renderPlayers() {
@@ -842,6 +855,8 @@ if (currentYear) {
             option.textContent = "No players yet";
 
             playerSelect.appendChild(option);
+
+            updateRemoveButton();
 
             return;
         }
@@ -862,17 +877,23 @@ if (currentYear) {
         });
 
         if (playerExists) {
+
             playerSelect.value = selectedPlayerId;
+
         } else {
+
             selectedPlayerId = players[0].id;
             playerSelect.value = selectedPlayerId;
+
         }
+
+        updateRemoveButton();
 
     }
 
 
     // =====================================
-    // 5. DISPLAY ONLINE LEADERBOARD
+    // 7. LOAD ONLINE LEADERBOARD
     // =====================================
 
     async function loadLeaderboard() {
@@ -882,14 +903,16 @@ if (currentYear) {
             .select("player_id, score");
 
         if (error) {
+
             console.error("Leaderboard error:", error);
             setStatus("Unable to load online scores.");
+
             return;
         }
 
         const bestScores = {};
 
-        data.forEach(function (record) {
+        (data || []).forEach(function (record) {
 
             const playerId = record.player_id;
             const score = Number(record.score);
@@ -903,7 +926,6 @@ if (currentYear) {
 
         });
 
-
         const rankedPlayers = players.map(function (player) {
 
             return {
@@ -914,14 +936,11 @@ if (currentYear) {
 
         });
 
-
         rankedPlayers.sort(function (a, b) {
             return b.bestScore - a.bestScore;
         });
 
-
         leaderboard.innerHTML = "";
-
 
         if (rankedPlayers.length === 0) {
 
@@ -934,7 +953,6 @@ if (currentYear) {
 
             return;
         }
-
 
         rankedPlayers.forEach(function (player, index) {
 
@@ -961,22 +979,23 @@ if (currentYear) {
 
 
     // =====================================
-    // 6. LOAD PLAYERS FROM SUPABASE
+    // 8. LOAD PLAYERS FROM SUPABASE
     // =====================================
 
     async function loadOnlinePlayers() {
+
+        if (!currentUserId) return;
 
         setStatus("Connecting...");
 
         const { data, error } = await db
             .from("snake_players")
-            .select("id, name")
+            .select("id, name, owner_id")
             .order("created_at", { ascending: true });
 
         if (error) {
 
             console.error("Player loading error:", error);
-
             setStatus("Offline");
 
             return;
@@ -994,7 +1013,55 @@ if (currentYear) {
 
 
     // =====================================
-    // 7. ADD A NEW ONLINE PLAYER
+    // 9. ANONYMOUS USER LOGIN
+    // =====================================
+
+    async function initializeAnonymousUser() {
+
+        setStatus("Connecting...");
+
+        addButton.disabled = true;
+
+        const { data: sessionData, error: sessionError } =
+            await db.auth.getSession();
+
+        if (sessionError) {
+
+            console.error("Session error:", sessionError);
+            setStatus("Connection failed.");
+
+            return;
+        }
+
+        let session = sessionData.session;
+
+        if (!session) {
+
+            const { data, error } = await db.auth.signInAnonymously();
+
+            if (error) {
+
+                console.error("Anonymous login error:", error);
+                setStatus("Unable to sign in.");
+
+                return;
+            }
+
+            session = data.session;
+
+        }
+
+        currentUserId = session.user.id;
+
+        addButton.disabled = false;
+
+        await loadOnlinePlayers();
+
+    }
+
+
+    // =====================================
+    // 10. ADD NEW PLAYER
     // =====================================
 
     addButton.addEventListener("click", function () {
@@ -1016,7 +1083,6 @@ if (currentYear) {
         if (!name) {
 
             notice.textContent = "Please enter a player name.";
-
             nameInput.focus();
 
             return;
@@ -1029,46 +1095,45 @@ if (currentYear) {
             return;
         }
 
+        if (!currentUserId) {
+
+            notice.textContent = "Please wait for the connection.";
+
+            return;
+        }
 
         saveButton.disabled = true;
-
         notice.textContent = "Adding player...";
-
 
         const { data, error } = await db
             .from("snake_players")
             .insert([
-                { name: name }
+                {
+                    name: name,
+                    owner_id: currentUserId
+                }
             ])
-            .select("id, name")
+            .select("id, name, owner_id")
             .single();
 
-
         saveButton.disabled = false;
-
 
         if (error) {
 
             console.error("Add player error:", error);
 
             if (error.code === "23505") {
-
                 notice.textContent = "That player name already exists.";
-
             } else {
-
                 notice.textContent = "Unable to add player. Please try again.";
-
             }
 
             return;
         }
 
-
         selectedPlayerId = data.id;
 
         newPlayerForm.hidden = true;
-
         nameInput.value = "";
 
         notice.textContent = "Player added successfully!";
@@ -1095,7 +1160,7 @@ if (currentYear) {
 
 
     // =====================================
-    // 8. CHANGE ACTIVE PLAYER
+    // 11. CHANGE ACTIVE PLAYER
     // =====================================
 
     playerSelect.addEventListener("change", function () {
@@ -1104,21 +1169,84 @@ if (currentYear) {
 
         notice.textContent = "";
 
+        updateRemoveButton();
+
     });
 
 
     // =====================================
-    // 9. SAVE GAME SCORE ONLINE
+    // 12. REMOVE OWN PLAYER
+    // =====================================
+
+    if (removeButton) {
+
+        removeButton.addEventListener("click", async function () {
+
+            const player = players.find(function (item) {
+                return item.id === playerSelect.value;
+            });
+
+            if (!player || player.owner_id !== currentUserId) {
+
+                notice.textContent = "You can only remove your own players.";
+
+                return;
+            }
+
+            const confirmed = window.confirm(
+                "Remove " + player.name +
+                " from your player list? Their saved scores will also be deleted."
+            );
+
+            if (!confirmed) return;
+
+            removeButton.disabled = true;
+            notice.textContent = "Removing player...";
+
+            const { data, error } = await db
+                .from("snake_players")
+                .delete()
+                .eq("id", player.id)
+                .eq("owner_id", currentUserId)
+                .select("id");
+
+            removeButton.disabled = false;
+
+            if (error) {
+
+                console.error("Remove player error:", error);
+                notice.textContent = "Unable to remove player.";
+
+                return;
+            }
+
+            if (!data || data.length === 0) {
+
+                notice.textContent = "You cannot remove this player.";
+
+                return;
+            }
+
+            selectedPlayerId = "";
+
+            notice.textContent = "Player removed successfully!";
+
+            await loadOnlinePlayers();
+
+        });
+
+    }
+
+
+    // =====================================
+    // 13. SAVE GAME SCORE ONLINE
     // =====================================
 
     window.saveSnakePlayerScore = async function (score) {
 
         const activePlayer = players.find(function (player) {
-
             return player.id === playerSelect.value;
-
         });
-
 
         if (!activePlayer) {
 
@@ -1128,9 +1256,7 @@ if (currentYear) {
             return;
         }
 
-
         const finalScore = Math.floor(Number(score));
-
 
         if (
             !Number.isFinite(finalScore) ||
@@ -1143,9 +1269,7 @@ if (currentYear) {
             return;
         }
 
-
         notice.textContent = "Saving your score online...";
-
 
         const { error } = await db
             .from("snake_scores")
@@ -1156,39 +1280,35 @@ if (currentYear) {
                 }
             ]);
 
-
         if (error) {
 
             console.error("Score saving error:", error);
-
             notice.textContent = "Unable to save score online.";
 
             return;
         }
 
-
         notice.textContent =
             "Score saved successfully for " + activePlayer.name + "!";
 
-
         await loadLeaderboard();
 
-        setStatus("Connected · Your score has been saved.");
+        setStatus("Online");
 
     };
 
-
     // =====================================
-    // 10. AUTOMATIC ONLINE REFRESH
+    // 14. AUTOMATIC ONLINE REFRESH
     // =====================================
 
-    loadOnlinePlayers();
+    // Initialize anonymous sign-in first.
+    initializeAnonymousUser();
 
 
     // Refresh every 15 seconds.
     setInterval(function () {
 
-        if (!document.hidden) {
+        if (!document.hidden && currentUserId) {
             loadOnlinePlayers();
         }
 
@@ -1198,7 +1318,7 @@ if (currentYear) {
     // Refresh when the visitor returns to the tab.
     document.addEventListener("visibilitychange", function () {
 
-        if (!document.hidden) {
+        if (!document.hidden && currentUserId) {
             loadOnlinePlayers();
         }
 
