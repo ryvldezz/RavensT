@@ -741,134 +741,203 @@ if (currentYear) {
 
 
 /* =========================================
-   12. SNAKE GAME PLAYER PROFILES
-   Custom remove confirmation + Undo.
+   12. SNAKE GAME ONLINE PLAYER PROFILES
+   Shared players and leaderboard using Supabase
 ========================================= */
 
 (function () {
+
+    // =====================================
+    // 1. SUPABASE CONNECTION
+    // =====================================
+
+    const SUPABASE_URL = "https://xjntmdiqczxcpktznnct.supabase.co";
+
+    const SUPABASE_ANON_KEY = "sb_publishable_kvu1ZbMTrIcXi3uVEJuNRA_Fh15nfmw";
+
+    if (!window.supabase) {
+        console.error("Supabase library was not loaded.");
+        return;
+    }
+
+    if (
+        SUPABASE_URL.includes("PASTE_YOUR") ||
+        SUPABASE_ANON_KEY.includes("PASTE_YOUR")
+    ) {
+        console.error("Please add your Supabase URL and anon key.");
+        return;
+    }
+
+    const db = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+
+    // =====================================
+    // 2. HTML ELEMENTS
+    // =====================================
+
     const playerSelect = document.getElementById("snakePlayer");
     const addButton = document.getElementById("snakeAddPlayer");
     const removeButton = document.getElementById("snakeRemovePlayer");
+
     const newPlayerForm = document.getElementById("snakeNewPlayerForm");
     const nameInput = document.getElementById("snakePlayerName");
     const saveButton = document.getElementById("snakeSavePlayer");
+
     const notice = document.getElementById("snakePlayerNotice");
     const leaderboard = document.getElementById("snakeLeaderboard");
+    const onlineStatus = document.getElementById("snakeOnlineStatus");
+
 
     if (
-        !playerSelect || !addButton || !removeButton ||
-        !newPlayerForm || !nameInput || !saveButton ||
-        !notice || !leaderboard
+        !playerSelect ||
+        !addButton ||
+        !newPlayerForm ||
+        !nameInput ||
+        !saveButton ||
+        !notice ||
+        !leaderboard
     ) {
-        console.error("Snake profiles: Check the player HTML IDs.");
+        console.error("Snake player HTML elements are missing.");
         return;
     }
 
-    const STORAGE_KEY = "ravensTechSnakePlayers";
+
+    // Public visitors must not be able to delete shared players.
+    if (removeButton) {
+        removeButton.hidden = true;
+    }
+
+
+    // =====================================
+    // 3. PLAYER DATA
+    // =====================================
+
     let players = [];
-    let pendingRemoval = null;
+    let selectedPlayerId = "";
 
-    try {
-        const saved = JSON.parse(
-            localStorage.getItem(STORAGE_KEY) || "[]"
-        );
 
-        if (Array.isArray(saved)) {
-            players = saved.filter(function (player) {
-                return player &&
-                    typeof player.id === "string" &&
-                    typeof player.name === "string" &&
-                    typeof player.bestScore === "number";
-            });
-        }
-    } catch (error) {
-        console.error("Could not load saved players.", error);
-    }
-
-    function persistPlayers() {
-        try {
-            localStorage.setItem(
-                STORAGE_KEY,
-                JSON.stringify(players)
-            );
-            return true;
-        } catch (error) {
-            notice.textContent =
-                "Unable to save data in this browser.";
-            return false;
+    function setStatus(message) {
+        if (onlineStatus) {
+            onlineStatus.textContent = message;
         }
     }
 
-    /* Create the Undo button automatically. */
-    const undoButton = document.createElement("button");
-    undoButton.type = "button";
-    undoButton.id = "snakeUndoRemove";
-    undoButton.textContent = "↶ Undo Remove";
-    undoButton.hidden = true;
-    removeButton.insertAdjacentElement("afterend", undoButton);
 
-    /* Create a custom confirmation popup automatically. */
-    const confirmOverlay = document.createElement("div");
-    confirmOverlay.className = "snake-confirm-overlay";
-    confirmOverlay.hidden = true;
+    // =====================================
+    // 4. DISPLAY PLAYERS
+    // =====================================
 
-    confirmOverlay.innerHTML = `
-        <div class="snake-confirm-box"
-             role="dialog"
-             aria-modal="true"
-             aria-labelledby="snakeConfirmTitle"
-             aria-describedby="snakeConfirmText">
-            <div class="snake-confirm-icon" aria-hidden="true">!</div>
-            <h3 id="snakeConfirmTitle">Remove Player?</h3>
-            <p id="snakeConfirmText"></p>
-            <div class="snake-confirm-actions">
-                <button type="button" class="snake-cancel-remove">
-                    Cancel
-                </button>
-                <button type="button" class="snake-confirm-remove">
-                    Remove Player
-                </button>
-            </div>
-        </div>
-    `;
+    function renderPlayers() {
 
-    const snakeWindow = document.querySelector(".snake-window");
+        playerSelect.innerHTML = "";
 
-    if (!snakeWindow) {
-        console.error("Snake profiles: .snake-window was not found.");
-        return;
-    }
+        if (players.length === 0) {
 
-    snakeWindow.appendChild(confirmOverlay);
+            const option = document.createElement("option");
 
-    const confirmText = confirmOverlay.querySelector(
-        "#snakeConfirmText"
-    );
-    const cancelRemoveButton = confirmOverlay.querySelector(
-        ".snake-cancel-remove"
-    );
-    const confirmRemoveButton = confirmOverlay.querySelector(
-        ".snake-confirm-remove"
-    );
+            option.value = "";
+            option.textContent = "No players yet";
 
-    let playerWaitingForRemoval = null;
+            playerSelect.appendChild(option);
 
-    function renderLeaderboard() {
-        leaderboard.innerHTML = "";
-
-        const rankedPlayers = [...players].sort(function (a, b) {
-            return b.bestScore - a.bestScore;
-        });
-
-        if (rankedPlayers.length === 0) {
-            const item = document.createElement("li");
-            item.className = "snake-empty";
-            item.textContent = "No players yet. Add a player to begin!";
-            leaderboard.appendChild(item);
             return;
         }
 
+        players.forEach(function (player) {
+
+            const option = document.createElement("option");
+
+            option.value = player.id;
+            option.textContent = player.name;
+
+            playerSelect.appendChild(option);
+
+        });
+
+        const playerExists = players.some(function (player) {
+            return player.id === selectedPlayerId;
+        });
+
+        if (playerExists) {
+            playerSelect.value = selectedPlayerId;
+        } else {
+            selectedPlayerId = players[0].id;
+            playerSelect.value = selectedPlayerId;
+        }
+
+    }
+
+
+    // =====================================
+    // 5. DISPLAY ONLINE LEADERBOARD
+    // =====================================
+
+    async function loadLeaderboard() {
+
+        const { data, error } = await db
+            .from("snake_scores")
+            .select("player_id, score");
+
+        if (error) {
+            console.error("Leaderboard error:", error);
+            setStatus("Unable to load online scores.");
+            return;
+        }
+
+        const bestScores = {};
+
+        data.forEach(function (record) {
+
+            const playerId = record.player_id;
+            const score = Number(record.score);
+
+            if (
+                bestScores[playerId] === undefined ||
+                score > bestScores[playerId]
+            ) {
+                bestScores[playerId] = score;
+            }
+
+        });
+
+
+        const rankedPlayers = players.map(function (player) {
+
+            return {
+                id: player.id,
+                name: player.name,
+                bestScore: bestScores[player.id] || 0
+            };
+
+        });
+
+
+        rankedPlayers.sort(function (a, b) {
+            return b.bestScore - a.bestScore;
+        });
+
+
+        leaderboard.innerHTML = "";
+
+
+        if (rankedPlayers.length === 0) {
+
+            const item = document.createElement("li");
+
+            item.className = "snake-empty";
+            item.textContent = "No players yet. Add a player to begin!";
+
+            leaderboard.appendChild(item);
+
+            return;
+        }
+
+
         rankedPlayers.forEach(function (player, index) {
+
             const item = document.createElement("li");
 
             const rank = document.createElement("span");
@@ -883,255 +952,260 @@ if (currentYear) {
             score.textContent = player.bestScore;
 
             item.append(rank, playerName, score);
+
             leaderboard.appendChild(item);
+
         });
+
     }
 
-    function renderPlayers(selectedId) {
-        playerSelect.innerHTML = "";
 
-        if (players.length === 0) {
-            const option = document.createElement("option");
-            option.value = "";
-            option.textContent = "Add a player to begin";
-            playerSelect.appendChild(option);
-        } else {
-            players.forEach(function (player) {
-                const option = document.createElement("option");
-                option.value = player.id;
-                option.textContent = player.name;
-                playerSelect.appendChild(option);
-            });
+    // =====================================
+    // 6. LOAD PLAYERS FROM SUPABASE
+    // =====================================
 
-            const selectionExists = players.some(function (player) {
-                return player.id === selectedId;
-            });
+    async function loadOnlinePlayers() {
 
-            if (selectionExists) {
-                playerSelect.value = selectedId;
-            }
+        setStatus("Loading online players...");
+
+        const { data, error } = await db
+            .from("snake_players")
+            .select("id, name")
+            .order("created_at", { ascending: true });
+
+        if (error) {
+
+            console.error("Player loading error:", error);
+
+            setStatus("Could not connect to online players.");
+
+            return;
         }
 
-        removeButton.disabled = players.length === 0;
-        renderLeaderboard();
+        players = data || [];
+
+        renderPlayers();
+
+        await loadLeaderboard();
+
+        setStatus("Connected · Online leaderboard is updated.");
+
     }
 
-    function closeConfirmation() {
-        confirmOverlay.hidden = true;
-        playerWaitingForRemoval = null;
-    }
 
-    function openConfirmation(player) {
-        playerWaitingForRemoval = player;
+    // =====================================
+    // 7. ADD A NEW ONLINE PLAYER
+    // =====================================
 
-        confirmText.textContent =
-            'Are you sure you want to remove "' + player.name +
-            '" and their saved personal-best score? You can undo this afterward.';
-
-        confirmOverlay.hidden = false;
-        cancelRemoveButton.focus();
-    }
-
-    /* Add player form. */
     addButton.addEventListener("click", function () {
+
         newPlayerForm.hidden = false;
+
         nameInput.value = "";
         notice.textContent = "";
+
         nameInput.focus();
+
     });
 
-    function addNewPlayer() {
+
+    async function addNewPlayer() {
+
         const name = nameInput.value.trim();
 
         if (!name) {
+
             notice.textContent = "Please enter a player name.";
+
             nameInput.focus();
+
             return;
         }
 
-        if (players.some(function (player) {
-            return player.name.toLowerCase() === name.toLowerCase();
-        })) {
-            notice.textContent = "That player name already exists.";
-            nameInput.focus();
+        if (name.length > 20) {
+
+            notice.textContent = "Player name must be 20 characters or fewer.";
+
             return;
         }
 
-        const newPlayer = {
-            id: (window.crypto && window.crypto.randomUUID)
-                ? window.crypto.randomUUID()
-                : String(Date.now()) +
-                  Math.random().toString(16).slice(2),
-            name: name,
-            bestScore: 0
-        };
 
-        players.push(newPlayer);
+        saveButton.disabled = true;
 
-        if (!persistPlayers()) {
-            players.pop();
+        notice.textContent = "Adding player...";
+
+
+        const { data, error } = await db
+            .from("snake_players")
+            .insert([
+                { name: name }
+            ])
+            .select("id, name")
+            .single();
+
+
+        saveButton.disabled = false;
+
+
+        if (error) {
+
+            console.error("Add player error:", error);
+
+            if (error.code === "23505") {
+
+                notice.textContent = "That player name already exists.";
+
+            } else {
+
+                notice.textContent = "Unable to add player. Please try again.";
+
+            }
+
             return;
         }
 
-        renderPlayers(newPlayer.id);
+
+        selectedPlayerId = data.id;
+
         newPlayerForm.hidden = true;
+
         nameInput.value = "";
+
         notice.textContent = "Player added successfully!";
+
+        await loadOnlinePlayers();
+
     }
+
 
     saveButton.addEventListener("click", addNewPlayer);
 
+
     nameInput.addEventListener("keydown", function (event) {
+
         if (event.key === "Enter") {
+
             event.preventDefault();
+
             addNewPlayer();
+
         }
+
     });
 
-    /* Ask for confirmation before removing. */
-    removeButton.addEventListener("click", function () {
-        const player = players.find(function (item) {
-            return item.id === playerSelect.value;
-        });
 
-        if (!player) {
-            notice.textContent = "Please select a player first.";
-            return;
-        }
-
-        openConfirmation(player);
-    });
-
-    cancelRemoveButton.addEventListener("click", function () {
-        closeConfirmation();
-        removeButton.focus();
-    });
-
-    confirmOverlay.addEventListener("click", function (event) {
-        if (event.target === confirmOverlay) {
-            closeConfirmation();
-        }
-    });
-
-    /* Confirm the removal and keep a temporary undo copy. */
-    confirmRemoveButton.addEventListener("click", function () {
-        const player = playerWaitingForRemoval;
-
-        if (!player) return;
-
-        const index = players.findIndex(function (item) {
-            return item.id === player.id;
-        });
-
-        if (index === -1) {
-            closeConfirmation();
-            return;
-        }
-
-        const removedPlayer = players[index];
-        players.splice(index, 1);
-
-        if (!persistPlayers()) {
-            players.splice(index, 0, removedPlayer);
-            renderPlayers(removedPlayer.id);
-            closeConfirmation();
-            return;
-        }
-
-        pendingRemoval = {
-            player: removedPlayer,
-            index: index
-        };
-
-        undoButton.hidden = false;
-        closeConfirmation();
-        renderPlayers();
-
-        notice.textContent =
-            removedPlayer.name + " was removed. Select Undo to restore them.";
-    });
-
-    /* Undo the most recent removal. */
-    undoButton.addEventListener("click", function () {
-        if (!pendingRemoval) return;
-
-        const removed = pendingRemoval;
-
-        // Prevent duplicate player IDs if the player was added again.
-        if (players.some(function (player) {
-            return player.id === removed.player.id;
-        })) {
-            notice.textContent =
-                "That player already exists. Undo was not applied.";
-            return;
-        }
-
-        players.splice(
-            Math.min(removed.index, players.length),
-            0,
-            removed.player
-        );
-
-        if (!persistPlayers()) {
-            players = players.filter(function (player) {
-                return player.id !== removed.player.id;
-            });
-            return;
-        }
-
-        pendingRemoval = null;
-        undoButton.hidden = true;
-
-        renderPlayers(removed.player.id);
-        notice.textContent =
-            removed.player.name + " and their saved score were restored!";
-    });
+    // =====================================
+    // 8. CHANGE ACTIVE PLAYER
+    // =====================================
 
     playerSelect.addEventListener("change", function () {
+
+        selectedPlayerId = playerSelect.value;
+
         notice.textContent = "";
+
     });
 
-    /* Save a player's personal-best score when the game ends. */
-    window.saveSnakePlayerScore = function (score) {
+
+    // =====================================
+    // 9. SAVE GAME SCORE ONLINE
+    // =====================================
+
+    window.saveSnakePlayerScore = async function (score) {
+
         const activePlayer = players.find(function (player) {
+
             return player.id === playerSelect.value;
+
         });
 
+
         if (!activePlayer) {
+
             notice.textContent =
-                "Add or select a player before playing to save scores.";
+                "Add or select a player before playing.";
+
             return;
         }
 
-        if (score > activePlayer.bestScore) {
-            const previousBest = activePlayer.bestScore;
-            activePlayer.bestScore = score;
 
-            if (!persistPlayers()) {
-                activePlayer.bestScore = previousBest;
-                return;
-            }
+        const finalScore = Math.floor(Number(score));
 
-            notice.textContent =
-                "New personal best for " + activePlayer.name + "!";
+
+        if (
+            !Number.isFinite(finalScore) ||
+            finalScore < 0 ||
+            finalScore > 1000000
+        ) {
+
+            notice.textContent = "Invalid score.";
+
+            return;
         }
 
-        renderLeaderboard();
+
+        notice.textContent = "Saving your score online...";
+
+
+        const { error } = await db
+            .from("snake_scores")
+            .insert([
+                {
+                    player_id: activePlayer.id,
+                    score: finalScore
+                }
+            ]);
+
+
+        if (error) {
+
+            console.error("Score saving error:", error);
+
+            notice.textContent = "Unable to save score online.";
+
+            return;
+        }
+
+
+        notice.textContent =
+            "Score saved successfully for " + activePlayer.name + "!";
+
+
+        await loadLeaderboard();
+
+        setStatus("Connected · Your score has been saved.");
+
     };
 
-    /* Close the confirmation with Escape. */
-    document.addEventListener("keydown", function (event) {
-        if (
-            event.key === "Escape" &&
-            !confirmOverlay.hidden
-        ) {
-            closeConfirmation();
-            removeButton.focus();
+
+    // =====================================
+    // 10. AUTOMATIC ONLINE REFRESH
+    // =====================================
+
+    loadOnlinePlayers();
+
+
+    // Refresh every 15 seconds.
+    setInterval(function () {
+
+        if (!document.hidden) {
+            loadOnlinePlayers();
         }
+
+    }, 15000);
+
+
+    // Refresh when the visitor returns to the tab.
+    document.addEventListener("visibilitychange", function () {
+
+        if (!document.hidden) {
+            loadOnlinePlayers();
+        }
+
     });
 
-    renderPlayers();
 })();
+
 /* =========================================
    SCHOOL PROJECT DOCUMENTATION INTERACTION
 ========================================= */
