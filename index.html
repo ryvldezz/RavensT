@@ -1,1998 +1,5900 @@
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-    <meta charset="UTF-8">
+/* =========================================
+   1. GLOBAL SETTINGS
+========================================= */
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+/* Remove default spacing */
 
-    <title>RavensT   Portfolio</title>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+/* =========================================
+   LIGHT MODE - PINK, WHITE & GRAY
+========================================= */
+body {
+    background: var(--bg);
+    color: var(--text);
+}
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-          rel="stylesheet">
+/* =========================================
+   LIGHT MODE
+========================================= */
 
-    <!-- CSS File -->
-    <link rel="stylesheet" href="style.css">
+:root {
+    --primary: #C85F89;
+    --primary-dark: #A9436D;
+    --accent: #E8A0BA;
 
-</head>
+    --bg: #F4F4F6;
+    --background: #F4F4F6;
+    --surface: #FAFAFB;
+    --card: #FFFFFF;
 
-<body>
+    --text: #29262B;
+    --text-muted: #77727A;
+    --text-light: #77727A;
 
-    <!-- ================= NAVIGATION ================= -->
+    --border: #E6E3E7;
+    --shadow: 0 6px 24px rgba(35, 25, 35, 0.06);
 
-    <header class="header">
+    --code-bg: #F0EDF1;
+    --code-text: #302633;
 
-        <nav class="navbar">
+    --radius: 18px;
+    --transition: 0.3s ease;
+}
 
-            <a href="#home" class="logo">
-                Ravens<span>T</span>
-            </a>
+/* =========================================
+   DARK MODE
+========================================= */
 
-            <!-- Navigation Links -->
+body.dark-mode {
+    --primary: #F4A6C1;
+    --primary-dark: #E17CA4;
+    --accent: #E8A0BA;
 
-            <ul class="nav-links" id="navLinks">
+    --bg: #211A23;
+    --background: #211A23;
+    --surface: #302633;
+    --card: #3A2D3D;
 
-                <li>
-                    <a href="#home" class="nav-link active">Home</a>
-                </li>
+    --text: #FFF4F8;
+    --text-muted: #D8C8D2;
+    --text-light: #D8C8D2;
 
-                <li>
-                    <a href="#about" class="nav-link">About Us</a>
-                </li>
+    --border: #594858;
+    --shadow: 0 8px 25px rgba(0, 0, 0, 0.30);
 
-                <li>
-                    <a href="#projects" class="nav-link">Our Projects</a>
-                </li>
+    --code-bg: #17121A;
+    --code-text: #F5D9E8;
+}
 
-                <li>
-                    <a href="#contact" class="nav-link">Contact</a>
-                </li>
 
-            </ul>
+/* =========================================
+   2. BODY
+========================================= */
 
-            <!-- Dark / Light Mode Button -->
+html {
 
-            <button class="theme-toggle"
-                    id="themeToggle"
-                    aria-label="Switch color theme">
+    scroll-behavior: smooth;
 
-                ☾
+    scroll-padding-top: 90px;
 
-            </button>
+}
 
-            <!-- Mobile Menu Button -->
+body {
 
-            <button class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Open navigation menu"
-                    aria-expanded="false">
+    font-family: "Poppins", sans-serif;
 
-                ☰
+    background: var(--background);
 
-            </button>
+    color: var(--text);
 
-        </nav>
+    line-height: 1.7;
 
-    </header>
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
 
+}
 
-    <!-- ================= HOME SECTION ================= -->
 
-    <section class="hero section" id="home">
+/* Remove default link styles */
 
-        <div class="hero-container">
+a {
 
-            <!-- Introduction -->
+    text-decoration: none;
 
-            <div class="hero-content">
+    color: inherit;
 
-                <p class="hero-subtitle">
-                    Hello, We are
-                </p>
+}
 
-                <h1>
-                    Ravens
-                    <span class="highlight"> Tech</span>
-                </h1>
 
-                <h2>
-                    College Students &
-                    <span class="highlight">Aspiring Developers!</span>
-                </h2>
+/* Buttons */
 
-                <p class="hero-description">
-All of us are currently developing and honing our skills in programming, web development, and problem-solving. Every project and experience gives us an opportunity to learn something new and improve ourselves.
-                </p>
+button,
+input,
+textarea {
 
-                <!-- Buttons -->
+    font-family: inherit;
 
-                <div class="hero-buttons">
+}
 
-                    <a href="#projects" class="btn btn-primary">
-                        Our Projects
-                    </a>
 
-                    <a href="#contact" class="btn btn-outline">
-                        Contact Us
-                    </a>
+/* Containers */
 
-                </div>
+.container {
 
-                <!-- Social Links -->
+    width: 90%;
 
-                <div class="social-links">
+    max-width: 1200px;
 
-                    <a href="https://www.facebook.com/official.colegiodemontalban"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Colegio de Montalban
-                    </a>
+    margin: 0 auto;
 
-                    <a href="https://www.facebook.com/CdMCSSOfficers"
-                       target="_blank"
-                       rel="noopener noreferrer">
-                        Computer Students' Society
-                    </a>
+}
 
-                </div>
 
-            </div>
+/* Sections */
 
-    <!-- ================= LOGO ================= -->
+.section {
 
+    padding: 100px 0;
 
-        <div class="hero-image">
-            <div class="profile-card">
+}
 
-                <div class="profile-decoration"></div>
 
+/* Highlighted text */
 
-                <div class="profile-icon">
-                    <img src="assets/images/raven.png">
-                </div>
-            </div>
-        </div>
+.highlight {
 
-    </section>
+    color: var(--primary);
 
+}
 
 
-<!-- ================= ABOUT US SECTION ================= -->
+/* =========================================
+   3. HEADER AND NAVIGATION
+========================================= */
 
-<section class="section about" id="about">
+.header {
 
-    <div class="container">
+    position: sticky;
 
-        <!-- Section Heading -->
+    top: 0;
 
-        <div class="section-heading">
+    z-index: 1000;
 
-            <h2>
-                About <span class="highlight">Us</span>
-            </h2>
+    background: var(--header-bg);
 
-        </div>
+    backdrop-filter: blur(12px);
 
+    border-bottom: 1px solid var(--border);
 
-        <!-- About Content -->
+}
 
-        <div class="about-content">
 
+.navbar {
 
- 
-        <!-- About Image -->
-        <div class="about-image">
+    width: 90%;
 
-            <div class="about-card">
+    max-width: 1200px;
 
-                <span class="about-emoji">🎓</span>
+    margin: 0 auto;
 
-                <h3>College Students</h3>
+    min-height: 75px;
 
-                <p>Always learning something new.</p>
+    display: flex;
 
-                <div class="about-status">
-                    <span></span>
-                    Growing through learning
-                </div>
+    align-items: center;
 
-            </div>
+    justify-content: space-between;
 
-        </div>
+}
 
-        <!-- About Information -->
-        <div class="about-text">
 
-            <h3>
-                Turning curiosity into
-                <span class="highlight"> creativity and technology.</span>
-            </h3>
+/* Logo */
 
-            <p>
-                We are a group of college students who enjoy exploring 
-                technology, learning new skills, and developing creative ideas.
-            </p>
+.logo {
 
-            <p>
-                Through my studies and personal experiences, I continue
-                to develop my knowledge in programming, web development,
-                and problem-solving.
-            </p>
+    font-size: 1.5rem;
 
-            <p>
-                My goal is to become a skilled developer and create
-                websites and applications that are useful, accessible,
-                and meaningful.
-            </p>
+    font-weight: 800;
 
-            <p>
-                Our simple goal is to become a skilled developer and create
-                websites and applications that are useful, accessible, and meaningful.      
-            </p>
+    color: var(--text);
 
+}
 
-            <!-- Personal Information -->
-            <div class="about-info">
+.logo span {
 
-                <div class="info-item">
-                    <strong>Course</strong>
-                    <span>BS Computer Engineering</span>
-                </div>
+    color: var(--primary);
 
-                <div class="info-item">
-                    <strong>Our Goal</strong>
-                    <span>Become a skilled Computer Engineer</span>
-                </div>
+}
 
-            </div>
 
-            <!-- Keep your existing Education Background here -->
-        </div>
-        </div>
-        </div>
-        </section>
+/* Navigation links */
 
+.nav-links {
 
-<!-- ================= BACKGROUND ================= -->
+    display: flex;
 
-        <section class="section education-section">
-            <div class="container">
+    align-items: center;
 
-                <div class="about-education">
+    gap: 30px;
 
-            <div class="education-list">
+    list-style: none;
 
-                <!-- ================= win ================= -->
+}
 
-                <details class="education-item">
+.nav-link {
 
-                    <summary>
+    color: var(--text-light);
 
-                        <div class="education-icon">
-                            <img src="assets/images/whn.jpg" alt="Whin Krishna Marie N. Didulo">
-                        </div>
-                        <div class="education-details">
+    font-size: 0.9rem;
 
-                            <span class="education-date">
-                                Developer
-                            </span>
+    font-weight: 500;
 
-                            <h4>Didulo, Whin Krishna Marie N.</h4>
+    transition: color 0.3s ease;
 
-                            <p>Future Computer Engineer</p>
+    position: relative;
 
-                        </div>
+}
 
-                    </summary>
-                      
-                                        <details class="education-item">
 
-                    <summary>
+/* Underline hover effect */
 
-                        <div class="education-details">
+.nav-link::after {
 
-                            <h4>Personal Information</h4>
+    content: "";
 
-                        </div>
+    position: absolute;
 
-                    </summary>
-                    
-                    <div class="education-extra">
+    width: 0;
 
-                        <p><strong>Full Name:</strong> Didulo Whin Krishna Marie N.</p>
-                        <p><strong>Gmail Address:</strong> didulowhinkrishnamarie@gmail.com</p>                        
-                        <p><strong>Birthday:</strong> May 31, 2007</p>
-                        <p><strong>Age:</strong> 19 years old</p>
-                        <p><strong>Height:</strong> 5'3 ft</p>
-                        <p><strong>Weight:</strong> 45 kg</p>
+    height: 2px;
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            I am Whin, a hardworking first-year Computer Engineering 
-                            student who dreams of becoming a successful computer engineer. 
-                            Even though I don't have enough knowledge and experience yet, 
-                            I am willing to study, learn, and improve my skills every day. 
-                            I believe that with dedication and determination, I can overcome 
-                            challenges and achieve my goals in the field of technology.
-                        </p>
+    bottom: -6px;
 
-                        <a
-                            href="https://www.facebook.com/whinwhin.didulo"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Whin Krishna Marie Didulo
-                        </a>
+    left: 0;
 
-                    </div>
+    background: var(--primary);
 
-                </details>
+    transition: width 0.3s ease;
 
+}
 
-                <!-- ================= Education ================= -->
+.nav-link:hover,
+.nav-link.active {
 
-                    <details class="education-item">
+    color: var(--primary);
 
-                    <summary>
+}
 
-                        <div class="education-details">
+.nav-link:hover::after,
+.nav-link.active::after {
 
-                            <h4>Education Background</h4>
+    width: 100%;
 
-                        </div>
+}
 
-                    </summary>
 
-                    <div class="education-extra">
+/* Theme button */
 
-                        <p><strong>College:</strong> Colegio de Montalban</p>
-                        <p><strong>Course:</strong> Bachelor of Science in Computer Engineering</p>                        
-                        <p><strong>Year and Section:</strong> First Year – Section 1-C</p>
-                        <p><strong>Senior High School:</strong> Kasiglahan Village Senior High School</p>
-                        <p><strong>Strand:</strong> Humanities and Social Sciences (HUMSS)</p>
-                        <p><strong>Achievement:</strong>  With honor student</p>
+.theme-toggle {
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            I am Whin, a hardworking first-year Computer Engineering 
-                            student who dreams of becoming a successful computer engineer. 
-                            Even though I don't have enough knowledge and experience yet, 
-                            I am willing to study, learn, and improve my skills every day. 
-                            I believe that with dedication and determination, I can overcome 
-                            challenges and achieve my goals in the field of technology.
-                        </p>
+    width: 42px;
 
-                    </div>
+    height: 42px;
 
-                </details>
+    border: 1px solid var(--border);
 
-                <!-- ================= Skills ================= -->
+    border-radius: 50%;
 
-                <details class="education-item">
+    background: var(--surface);
 
-                    <summary>
+    color: var(--text);
 
-                        <div class="education-details">
+    cursor: pointer;
 
-                            <h4>
-                                Skills and Interests
-                            </h4>
+    font-size: 1.2rem;
 
-                        </div>
+    transition: 0.3s ease;
 
-                    </summary>
+}
 
-                    <div class="education-extra">
+.theme-toggle:hover {
 
-                        <p><strong>Basic Editing:</strong> I have basic knowledge of editing and enjoy learning 
-                            how to improve my editing skills.
-                        </p>
+    background: var(--primary);
 
-                        <p><strong>Basic Technology Knowledge:</strong> I have a little knowledge of technology 
-                            and am willing to explore and understand more about computers and 
-                            other technological tools.
-                        </p>                        
+    color: white;
 
-                        <p><strong>Willingness to Learn:</strong> I am open to learning new skills and gaining 
-                            experience, especially in computer programming and technology.
-                        </p>  
+    transform: rotate(15deg);
 
-                    </div>
+}
 
-                </details>
 
-            </div>
-        </div>
-    </div>
-</section>  
+/* Mobile menu */
 
-<!-- ================= gario ================= -->
+.menu-toggle {
 
-        <section class="section education-section">
-            <div class="container">
+    display: none;
 
-                <div class="about-education">
+    background: transparent;
 
-            <div class="education-list">
+    border: none;
 
-                <!-- ================= BACKGROUND ================= -->
+    color: var(--text);
 
-                <details class="education-item">
+    font-size: 1.8rem;
 
-                    <summary>
+    cursor: pointer;
 
-                        <div class="education-icon">
-                            <img src="assets/images/gario.jpg" alt="Christine B. Gario">
-                        </div>
-                        <div class="education-details">
+}
 
-                            <span class="education-date">
-                                Developer
-                            </span>
 
-                            <h4>Gario, Christine B.</h4>
+/* =========================================
+   4. HERO SECTION
+========================================= */
 
-                            <p>Future Computer Engineer</p>
+.hero {
 
-                        </div>
+    min-height: 85vh;
 
-                    </summary>
-                      
-                                        <details class="education-item">
+    display: flex;
 
-                    <summary>
+    align-items: center;
 
-                        <div class="education-details">
+    background:
 
-                            <h4>Personal Information</h4>
+        radial-gradient(
+            circle at 85% 30%,
+            rgba(230, 57, 70, 0.08),
+            transparent 35%
+        );
 
-                        </div>
+}
 
-                    </summary>
-                    
-                    <div class="education-extra">
 
-                        <p><strong>Full Name:</strong> Gario, Christine B.</p>
-                        <p><strong>Gmail Address:</strong> gariochristine719@gmail.com</p>                        
-                        <p><strong>Birthday:</strong> June 18, 2008</p>
-                        <p><strong>Age:</strong> 18 years old</p>
-                        <p><strong>Height:</strong> 5'1 ft</p>
-                        <p><strong>Weight:</strong> 49 kg</p>
+.hero-container {
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            I'm a computer engineering student,  I am the kind of person 
-                            who is willing to learn and study more of my craft as a developer 
-                            and creator. I'm dedicated  to doing my task especially when I am passionate 
-                            and motivated on what I am doing . I enjoy learning new things along with my 
-                            team as we aspire to achieve our shared goals that would help us develop, grow 
-                            and learn in the future.
+    width: 90%;
 
-                        </p>
+    max-width: 1200px;
 
-                        <a
-                            href="https://www.facebook.com/christine.gario.5"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Christine Gario
-                        </a> 
+    margin: 0 auto;
 
-                    </div>
+    display: grid;
 
-                </details>
+    grid-template-columns: 1.2fr 0.8fr;
 
+    align-items: center;
 
-                <!-- ================= Education ================= -->
+    gap: 60px;
 
-                    <details class="education-item">
+}
 
-                    <summary>
 
-                        <div class="education-details">
+/* Introduction */
 
-                            <h4>Education Background</h4>
+.hero-subtitle {
 
-                        </div>
+    color: var(--primary);
 
-                    </summary>
+    font-weight: 600;
 
-                    <div class="education-extra">
+    letter-spacing: 2px;
 
-                        <p><strong>College:</strong> Colegio de Montalban</p>
-                        <p><strong>Course:</strong> Bachelor of Science in Computer Engineering</p>                        
-                        <p><strong>Year and Section:</strong> First Year – Section 1-C</p>
-                        <p><strong>Senior High School:</strong> Senior High School: Light of Hope 
-                            Christian Academy in Philippines Inc.</p>
-                        <p><strong>Strand:</strong> Science, Technology, Engineering, and 
-                            Mathematics (STEM)</p>
-                        <p><strong>Achievement:</strong> With honor student</p>
+    text-transform: uppercase;
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            I am Whin, a hardworking first-year Computer Engineering 
-                            student who dreams of becoming a successful computer engineer. 
-                            Even though I don't have enough knowledge and experience yet, 
-                            I am willing to study, learn, and improve my skills every day. 
-                            I believe that with dedication and determination, I can overcome 
-                            challenges and achieve my goals in the field of technology.
-                        </p>
+    font-size: 0.9rem;
 
-                    </div>
+}
 
-                </details>
 
-                <!-- ================= Skills ================= -->
+.hero-content h1 {
 
-                <details class="education-item">
+    font-size: clamp(3rem, 7vw, 5.5rem);
 
-                    <summary>
+    font-weight: 800;
 
-                        <div class="education-details">
+    line-height: 1.2;
 
-                            <h4>
-                                Skills and Interests
-                            </h4>
+    margin: 10px 0;
 
-                        </div>
+}
 
-                    </summary>
 
-                    <div class="education-extra">
+.hero-content h2 {
 
-                        <p><strong>Adaptability :</strong> Able to adjust in shifting environment and workplace.
-                        </p>
+    font-size: clamp(1.3rem, 3vw, 2rem);
 
-                        <p><strong>Communication:</strong> Ability to convey and spoke in an appropriate tone wgen communicating.
-                        </p>                        
+    font-weight: 600;
 
-                        <p><strong>Editing:</strong> Able to edit a video or photo to make the raw footage have effects.
-                        </p>  
+    margin-bottom: 20px;
 
-                        <p><strong>Team Work:</strong> Ability to work together as one to reach the same goal.
-                        </p>  
+}
 
-                    </div>
 
-                </details>
+.hero-description {
 
-            </div>
-        </div>
-    </div>
-</section>  
+    max-width: 600px;
 
-<!-- ================= salvador ================= -->
+    color: var(--text-light);
 
-        <section class="section education-section">
-            <div class="container">
+    margin-bottom: 30px;
 
-                <div class="about-education">
+}
 
-            <div class="education-list">
 
-                <details class="education-item">
+/* Hero buttons */
 
-                    <summary>
+.hero-buttons {
 
-                        <div class="education-icon">
-                            <img src="assets/images/salbador.jpg" alt="Adrian Raven P. Salvador">
-                        </div>
-                        <div class="education-details">
+    display: flex;
 
-                            <span class="education-date">
-                                Developer
-                            </span>
+    flex-wrap: wrap;
 
-                            <h4>Salvador, Adrian Raven P.</h4>
+    gap: 15px;
 
-                            <p>Future Computer Engineer</p>
+    margin-bottom: 30px;
 
-                        </div>
+}
 
-                    </summary>
-                      
-                                        <details class="education-item">
 
-                    <summary>
+.btn {
 
-                        <div class="education-details">
+    display: inline-flex;
 
-                            <h4>Personal Information</h4>
+    align-items: center;
 
-                        </div>
+    justify-content: center;
 
-                    </summary>
-                    
-                    <div class="education-extra">
+    padding: 12px 25px;
 
-                        <p><strong>Full Name:</strong> Adrian Raven P. Salvador</p>
-                        <p><strong>Gmail Address:</strong> adrianravensalvadorgmail.com</p>                        
-                        <p><strong>Birthday:</strong> July 9,2008</p>
-                        <p><strong>Age:</strong> 18 years old</p>
-                        <p><strong>Height:</strong> 5'4 ft</p>
-                        <p><strong>Weight:</strong> 50 kg</p>
+    border-radius: 8px;
 
-                        <p>
-                            <strong>About me:</strong>I am someone who loves to learn. I 
-                            am focused, disciplined, and always eager to understand things 
-                            deeply. For me, studying is not just about grades, but about 
-                            becoming better and more knowledgeable.
-                        </p>
+    font-size: 0.9rem;
 
-                        <a
-                            href="https://www.facebook.com/raven.salvador.872150"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Raven Salvador
-                        </a>
+    font-weight: 600;
 
-                    </div>
+    cursor: pointer;
 
-                </details>
+    border: 2px solid transparent;
 
+    transition:
 
-                <!-- ================= Education ================= -->
+        transform 0.3s ease,
 
-                    <details class="education-item">
+        background 0.3s ease,
 
-                    <summary>
+        color 0.3s ease,
 
-                        <div class="education-details">
+        box-shadow 0.3s ease;
 
-                            <h4>Education Background</h4>
+}
 
-                        </div>
 
-                    </summary>
+/* Primary button */
 
-                    <div class="education-extra">
+.btn-primary {
 
-                        <p><strong>College:</strong> Colegio de Montalban</p>
-                        <p><strong>Course:</strong> Bachelor of Science in Computer Engineering</p>                        
-                        <p><strong>Year and Section:</strong> First Year – Section 1-C</p>
-                        <p><strong>Senior High School:</strong> Westbridge Institute of technology Inc. </p>
-                        <p><strong>Strand:</strong> Humanities and Social Sciences (HUMSS)</p>
-                        <p><strong>Achievement:</strong> With honor student</p>
+    background: var(--primary);
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                    </div>
+    color: white;
 
-                </details>
+    border-color: var(--primary);
 
-                <!-- ================= Skills ================= -->
+}
 
-                <details class="education-item">
 
-                    <summary>
+.btn-primary:hover {
 
-                        <div class="education-details">
+    background: var(--primary-dark);
 
-                            <h4>
-                                Skills and Interests
-                            </h4>
+    border-color: var(--primary-dark);
 
-                        </div>
+    transform: translateY(-4px);
 
-                    </summary>
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.25);
 
-                    <div class="education-extra">
+}
 
-                        <p><strong>Problem Solving:</strong> lfe fke
-                        </p>
 
-                    </div>
+/* Outline button */
 
-                </details>
+.btn-outline {
 
-            </div>
-        </div>
-    </div>
-</section>  
+    background: transparent;
 
-<!-- ================= valdez ================= -->
+    color: var(--text);
 
-        <section class="section education-section">
-            <div class="container">
+    border-color: var(--border);
 
-                <div class="about-education">
+}
 
-            <div class="education-list">
 
-                <details class="education-item">
+.btn-outline:hover {
 
-                    <summary>
+    background: var(--primary);
 
-                        <div class="education-icon">
-                            <img src="assets/images/ry.jpg" alt="Ryan G. Valdez">
-                        </div>
-                        <div class="education-details">
+    color: white;
 
-                            <span class="education-date">
-                                Developer
-                            </span>
+    border-color: var(--primary);
 
-                            <h4>Valdez, Ryan G.</h4>
+    transform: translateY(-4px);
 
-                            <p>Future Computer Engineer</p>
+}
 
-                        </div>
 
-                    </summary>
-                      
-                                        <details class="education-item">
+/* Social links */
 
-                    <summary>
+.social-links {
 
-                        <div class="education-details">
+    display: flex;
 
-                            <h4>Personal Information</h4>
+    gap: 25px;
 
-                        </div>
+}
 
-                    </summary>
-                    
-                    <div class="education-extra">
 
-                        <p><strong>Full Name:</strong> Valdez, Ryan G.</p>
-                        <p><strong>Gmail Address:</strong> ryvldezz@gmail.com</p>                        
-                        <p><strong>Birthday:</strong> October 16, 2008</p>
-                        <p><strong>Age:</strong> 18 years old</p>
-                        <p><strong>Height:</strong>  5'4 ft</p>
-                        <p><strong>Weight:</strong> 55 kg</p>
+.social-links a {
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            I am Ryan, a motivated and curious Computer engineering 
-                            student who enjoys learning new things, exploring my creativity, 
-                            and improving my skills. I am passionate about discovering new 
-                            ideas, expressing myself through different projects, and growing 
-                            both personally and academically.
-                        </p>
+    color: var(--text-light);
 
-                        <a
-                            href="https://www.facebook.com/ryangiggachad"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Ryan Valdez 
-                        </a>
+    font-size: 0.9rem;
 
-                    </div>
+    transition: color 0.3s ease;
 
-                </details>
+}
 
-                <!-- ================= Education ================= -->
 
-                    <details class="education-item">
+.social-links a:hover {
 
-                    <summary>
+    color: var(--primary);
 
-                        <div class="education-details">
+}
 
-                            <h4>Education Background</h4>
 
-                        </div>
+/* Hero profile card */
 
-                    </summary>
+.hero-image {
 
-                    <div class="education-extra">
+    display: flex;
 
-                        <p><strong>College:</strong> Colegio de Montalban</p>
-                        <p><strong>Course:</strong> Bachelor of Science in Computer Engineering</p>                        
-                        <p><strong>Year and Section:</strong> First Year – Section 1-C</p>
-                        <p><strong>Senior High School:</strong> Senior High School: Light of Hope 
-                            Christian Academy in Philippines Inc.</p>
-                        <p><strong>Strand:</strong> Science, Technology, Engineering, and 
-                            Mathematics (STEM)</p>
-                        <p><strong>Achievement:</strong> With honor student</p>
+    justify-content: center;
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
+    align-items: center;
 
-                    </div>
+}
 
-                </details>
 
-                <!-- ================= Skills ================= -->
+.profile-card {
 
-                <details class="education-item">
+    width: 100%;
 
-                    <summary>
+    max-width: 350px;
 
-                        <div class="education-details">
+    min-height: 380px;
 
-                            <h4>
-                                Skills and Interests
-                            </h4>
+    animation: float 4s ease-in-out infinite;
 
-                        </div>
+}
 
-                    </summary>
 
-                    <div class="education-extra">
 
-                        <p><strong>Leadership:</strong> I can handle, guide, motivate, 
-                            and help everyone work together to achieve our shared goals.
-                            Communication: I can express my thoughts clearly, 
-                            listen carefully, and share ideas 
-                            with others in a respectful way.
-                        </p>
+/* =========================================
+   PROFILE PICTURE
+========================================= */
 
-                        <p><strong> Flexibility:</strong> I have a little knowledge of 
-                            technology and am willing to explore and understand more about 
-                            computers and other technological tools. 
-                        
-                        <p><strong>Adaptability:</strong> I am open to learning new skills 
-                            and gaining experience, especially in computer programming and 
-                            technology.
-                        </p>                        
+.profile-icon {
 
-                    </div>
+    width: 180px;
+    height: 180px;
 
-                </details>
+    margin-bottom: 20px;
 
-            </div>
-        </div>
-    </div>
-</section>  
+    border-radius: 10%;
 
-<!-- ================= villaruel ================= -->
+    border: 4px solid var(--primary);
 
-        <section class="section education-section">
-            <div class="container">
+    display: flex;
 
-                <div class="about-education">
+    align-items: center;
 
-            <div class="education-list">
+    justify-content: center;
 
-                <details class="education-item">
+    background: var(--surface);
 
-                    <summary>
+}
 
-                        <div class="education-icon">
-                            <img src="assets/images/allyssa.jpg" alt="Allyssa Jean J. Villaruel">
-                        </div>
-                        <div class="education-details">
+/* Your actual picture */
 
-                            <span class="education-date">
-                                Developer
-                            </span>
+.profile-icon img {
 
-                            <h4>Villaruel, Allyssa Jean J.</h4>
+    width: 150%;
+    height: 150%;
 
-                            <p>Future Computer Engineer</p>
+    object-fit: cover;
 
-                        </div>
+    object-position: center;
 
-                    </summary>
-                      
-                                        <details class="education-item">
+    display: block;
 
-                    <summary>
+    border-radius: 25%;
 
-                        <div class="education-details">
+}
 
-                            <h4>Personal Information</h4>
+/* Smaller picture on mobile */
 
-                        </div>
+@media (max-width: 768px) {
 
-                    </summary>
-                    
-                    <div class="education-extra">
+    .profile-icon {
 
-                        <p><strong>Full Name:</strong> Villaruel, Allyssa Jean J.</p>
-                        <p><strong>Gmail Address:</strong> villaruelallyssajean@gmail.com</p>                        
-                        <p><strong>Birthday:</strong> September 5, 2008</p>
-                        <p><strong>Age:</strong> 18 years old</p>
-                        <p><strong>Height:</strong> 4'9 ft</p>
-                        <p><strong>Weight:</strong> 36 kg</p>
+        width: 150px;
+        height: 150px;
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
-                       
-                        <p>
-                            Hi! I'm Allyssa, a college student who 
-                            is passionate about learning new things and 
-                            exploring the world of technology. I'm currently 
-                            developing my skills in programming and web . 
-                            I enjoy discovering new ideas, improving my 
-                            abilities, and challenging myself to grow both 
-                            personally and academically. My goal is to become 
-                            a skilled and successful Computer Engineer in the 
-                            future.
+    }
 
-                        </p>
+}
 
-                        <a
-                            href="https://www.facebook.com/allyssa.villaruel.2024"
-                            target="_blank"
-                            rel="noopener noreferrer">
-                            Allyssa Villaruel
-                        </a>
 
-                    </div>
 
-                </details>
+.profile-card h3 {
 
-                <!-- ================= Education ================= -->
+    font-size: 1.4rem;
 
-                    <details class="education-item">
+}
 
-                    <summary>
 
-                        <div class="education-details">
+.profile-card p {
 
-                            <h4>Education Background</h4>
+    color: var(--text-light);
 
-                        </div>
+}
 
-                    </summary>
 
-                    <div class="education-extra">
+.profile-decoration {
 
-                        <p><strong>College:</strong> Colegio de Montalban</p>
-                        <p><strong>Course:</strong> Bachelor of Science in Computer Engineering</p>                        
-                        <p><strong>Year and Section:</strong> First Year – Section 1-C</p>
-                        <p><strong>Senior High School:</strong> Senior High School: Light of Hope 
-                            Christian Academy in Philippines Inc.</p>
-                        <p><strong>Strand:</strong> Science, Technology, Engineering, and 
-                            Mathematics (STEM)</p>
-                        <p><strong>Achievement:</strong> With high honor student</p>
+    position: absolute;
 
-                        <p>
-                            <strong>About me:</strong>
-                        </p>
+    width: 180px;
 
-                    </div>
+    height: 180px;
 
-                </details>
+    background: var(--primary);
 
-                <!-- ================= Skills ================= -->
+    opacity: 0.08;
 
-                <details class="education-item">
+    border-radius: 50%;
 
-                    <summary>
+    top: -60px;
 
-                        <div class="education-details">
+    right: -60px;
 
-                            <h4>
-                                Skills and Interests
-                            </h4>
+}
 
-                        </div>
 
-                    </summary>
+/* Floating animation */
 
-                    <div class="education-extra">
+@keyframes float {
 
-                        <p><strong>Creative Thinking:</strong> Creative thinking 
-                            helps me generate new and original ideas instead 
-                            of copying to others. 
-                        </p>
+    0%,
+    100% {
 
-                        <p><strong> Adaptability To Adjust Quickly:</strong> Adaptability to 
-                            adjust to new lessons, teachers, or challenges.
-                        </p>   
-                        
-                        <p><strong>Self-Discipline:</strong> Discipline keeps 
-                            me focused even when i don't feel motivated. 
-                            It pushes me to study, learned and stay away 
-                            from distractions.
-                        </p>                        
+        transform: translateY(0);
 
-                    </div>
+    }
 
-                </details>
+    50% {
 
-            </div>
-        </div>
-    </div>
-</section>  
+        transform: translateY(-12px);
 
-    <!-- ================= PROJECTS SECTION ================= -->
+    }
 
-    <section class="section projects" id="projects">
+}
 
-        <div class="container">
 
-            <div class="section-heading">
+/* =========================================
+   5. SECTION HEADINGS
+========================================= */
 
-                <p class="section-subtitle">
-                    Our recent work
-                </p>
+.section-heading {
 
-                <h2>
-                    Our <span class="highlight">Projects</span>
-                </h2>
+    text-align: center;
 
-                <p class="section-description">
+    max-width: 700px;
 
-                    Here are some projects we have created
-                    or plan to develop.
+    margin: 0 auto 60px;
 
-                </p>
+}
 
-            </div>
 
+.section-subtitle {
 
-            <!-- Projects Grid -->
+    color: var(--primary);
 
-            <div class="projects-grid">
+    font-size: 0.85rem;
 
-                <!-- Project 1  -->
+    font-weight: 600;
 
-                <div class="project-card school-project-folder"
-                id="schoolProjectFolder"
-                role="button"
-                tabindex="0"
-                aria-haspopup="dialog"
-                aria-label="Open Student Information project documentation">
-                    <div class="project-image project-image-two">
+    text-transform: uppercase;
 
-                        <span>🌐</span>
+    letter-spacing: 2px;
 
-                    </div>
+}
 
-                    <div class="project-content">
 
-                        <p class="project-category">
-                            Programming
-                        </p>
+.section-heading h2 {
 
-                        <h3>Website Development</h3>
+    font-size: clamp(2rem, 4vw, 3rem);
 
-                        <p>
-                            A collaborative project showcasing the planning,
-                            design, development, and testing of the RavensTech 
-                            portfolio website.
-                        </p>
+    font-weight: 800;
 
-                        <div class="project-tags">
+    margin: 10px 0;
 
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
+}
 
-                        </div>
 
-                        <span class="project-link">
-                            Open Documentation →
-                        </span>
-                    </div>
+.section-description {
 
-                </div>
+    color: var(--text-light);
 
-                <!-- Project 2  -->
-               
-                <!-- =========================================
-                    PYTHON PROGRAMS PROJECT CARD
-                ========================================= -->
+}
 
-                <div class="project-card"
-                    id="pythonProgramsCard"
-                    role="button"
-                    tabindex="0"
-                    aria-haspopup="dialog"
-                    aria-label="Open Python Programs Collection">
 
-                    <div class="project-image project-image-python">
-                        <span>🐍</span>
-                    </div>
+/* =========================================
+   8. PROJECTS SECTION
+   NO INNER SCROLLBAR
+========================================= */
 
-                    <div class="project-content">
-                        <p class="project-category">PYTHON PROJECT MIDTERMS</p>
+.projects {
+    background: var(--surface);
 
-                        <h3>Python Programs Collection</h3>
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
 
-                        <p>
-                            A collection of Python programs developed
-                            by the members of our programming team.
-                        </p>
+    overflow: visible !important;
+}
 
-                        <div class="project-tags">
-                            <span>Python</span>
-                            <span>Programming</span>
-                            <span>Team Project</span>
-                        </div>
+/* Projects container */
+.projects .container {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+}
 
-                        <span class="project-link">Explore Programs →</span>
-                    </div>
-                </div>
+/* Projects grid */
+.projects-grid {
+    display: grid;
 
-                <!-- Project 3  -->
-                
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-                <!-- =========================================
-                    SNAKE GAME DOCUMENTATION PROJECT CARD
-                ========================================= -->
+    gap: 25px;
 
-                <div class="project-card"
-                    id="snakeDocumentationCard"
-                    role="button"
-                    tabindex="0"
-                    aria-haspopup="dialog"
-                    aria-label="Open Snake Game Documentation">
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
 
-                    <div class="project-image project-image-snake">
-                        <span>🎮</span>
-                    </div>
+    overflow: visible !important;
+}
 
-                    <div class="project-content">
-                        <p class="project-category">GAME DEVELOPMENT</p>
+/* Project cards */
+.project-card {
+    background: var(--card);
 
-                        <h3>RavensTech Snake Game</h3>
+    border: 1px solid var(--border);
 
-                        <p>
-                            Explore the source code, functions,
-                            mechanics, and development of our Snake game.
-                        </p>
+    border-radius: 15px;
 
-                        <div class="project-tags">
-                            <span>HTML</span>
-                            <span>CSS</span>
-                            <span>JavaScript</span>
-                            <span>PHP</span>
-                        </div>
+    overflow: hidden;
 
+    cursor: pointer;
 
-                        <span class="project-link">View Documentation →</span>
-                    </div>
-                </div>
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+}
 
-            </div> <!-- Closes projects-grid -->
+/* Keyboard focus */
+.project-card:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 5px;
+}
 
-        </div> <!-- Closes container -->
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow);
+}
 
-    </section> <!-- Closes Projects section -->
+/* Project visual */
+.project-image {
+    height: 200px;
 
-    <!-- ================= CONTACT SECTION ================= -->
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    <section class="section contact" id="contact">
+    font-size: 5rem;
 
-        <div class="container">
+    transition: transform 0.3s ease;
+}
 
-            <div class="section-heading">
+.project-card:hover .project-image {
+    transform: scale(1.04);
+}
 
-                <p class="section-subtitle">
-                    Let's connect
-                </p>
+.project-image-one {
+    background: linear-gradient(
+        135deg,
+        #ffe0e0,
+        #f7a8a8
+    );
+}
 
-                <h2>
-                    Contact <span class="highlight">Us</span>
-                </h2>
+.project-image-three {
+    background: linear-gradient(
+        135deg,
+        #d9f7e8,
+        #98dfbb
+    );
+}
 
-                <p class="section-description">
+/* Project information */
+.project-content {
+    padding: 25px;
+}
 
-                    Have a question, suggestion,
-                    or opportunity?
+.project-category {
+    color: var(--primary);
 
-                    Feel free to send me a message.
+    font-size: 0.8rem;
+    font-weight: 600;
 
-                </p>
+    text-transform: uppercase;
+    letter-spacing: 1px;
 
-            </div>
+    margin-bottom: 10px;
+}
 
+.project-content h3 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
 
-            <div class="contact-container">
+.project-content > p:not(.project-category) {
+    color: var(--text-light);
 
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
 
-                <!-- Contact Information -->
+/* Project tags */
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
 
-                <div class="contact-info">
+    gap: 8px;
+    margin-bottom: 20px;
+}
 
-                    <h3>
-                        Let's work together!
-                    </h3>
+.project-tags span {
+    padding: 5px 10px;
 
-                    <p>
+    border-radius: 5px;
 
-                        I am always interested in learning,
-                        collaborating, and connecting
-                        with other people.
+    background: var(--surface);
+    color: var(--text-light);
 
-                    </p>
+    font-size: 0.75rem;
+}
 
+/* Project link */
+.project-link {
+    display: inline-block;
 
-                    <div class="contact-item">
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.9rem;
 
-                        <span class="contact-icon">
-                            📧
-                        </span>
+    transition: transform 0.3s ease;
+}
 
-                        <div>
+.project-link:hover {
+    transform: translateX(5px);
+}
 
-                            <h4>Gmail</h4>
+/* Responsive layout */
+@media (max-width: 900px) {
+    .projects-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
 
-                            <p>
-                                ryvldezz@gmail.com
-                            </p>
+@media (max-width: 600px) {
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+}
 
-                        </div>
 
-                    </div>
+/* =========================================
+   9. CONTACT SECTION
+========================================= */
 
+.contact-container {
 
-                    <div class="contact-item">
+    display: grid;
 
-                        <span class="contact-icon">
-                            📍
-                        </span>
+    grid-template-columns: 1fr 1fr;
 
-                        <div>
+    gap: 60px;
 
-                            <h4>Location</h4>
+    align-items: start;
 
-                            <p>
-                                Philippines
-                            </p>
+}
 
-                        </div>
 
-                    </div>
+.contact-info h3 {
 
-                </div>
+    font-size: 1.7rem;
 
+    margin-bottom: 15px;
 
-                <!-- Contact Form -->
+}
 
-                <form class="contact-form" id="contactForm">
 
-                    <div class="form-group">
+.contact-info > p {
 
-                        <label for="name">
-                            Your Name
-                        </label>
+    color: var(--text-light);
 
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Enter your name"
-                            required
-                        >
+    margin-bottom: 35px;
 
-                    </div>
+}
 
 
-                    <div class="form-group">
+/* Contact information */
 
-                        <label for="email">
-                            Your Email
-                        </label>
+.contact-item {
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="Enter your email"
-                            required
-                        >
+    display: flex;
 
-                    </div>
+    align-items: center;
 
+    gap: 15px;
 
-                    <div class="form-group">
+    margin-bottom: 25px;
 
-                        <label for="subject">
-                            Subject
-                        </label>
+}
 
-                        <input
-                            type="text"
-                            id="subject"
-                            name="subject"
-                            placeholder="Enter message subject"
-                            required
-                        >
 
-                    </div>
+.contact-icon {
 
+    width: 50px;
 
-                    <div class="form-group">
+    height: 50px;
 
-                        <label for="message">
-                            Message
-                        </label>
+    border-radius: 10px;
 
-                        <textarea
-                            id="message"
-                            name="message"
-                            rows="5"
-                            placeholder="Write your message here..."
-                            required
-                        ></textarea>
+    background: var(--surface);
 
-                    </div>
+    display: flex;
 
+    align-items: center;
 
-                    <button type="submit" class="btn btn-primary">
+    justify-content: center;
 
-                        Send Message
+    font-size: 1.3rem;
 
-                    </button>
+}
 
 
-                    <!-- Form feedback -->
+.contact-item h4 {
 
-                    <p id="formMessage" class="form-message"></p>
+    font-size: 0.95rem;
 
-                </form>
+}
 
-            </div>
 
-        </div>
+.contact-item p {
 
-    </section>
+    color: var(--text-light);
 
+    font-size: 0.9rem;
 
-    <!-- ================= FOOTER ================= -->
+}
 
-    <footer class="footer">
 
-        <div class="container">
+/* Contact form */
 
-            <div class="footer-content">
+.contact-form {
 
-                <a href="#home" class="logo">
-                    Ravens<span>Tech</span>
-                </a>
+    background: var(--card);
 
-                <p>
+    border: 1px solid var(--border);
 
-                    Learning today.
-                    Building tomorrow.
+    border-radius: 15px;
 
-                </p>
+    padding: 35px;
 
-                <div class="footer-links">
+    box-shadow: var(--shadow);
 
-                    <a href="#home">Home</a>
+}
 
-                    <a href="#about">About</a>
 
-                    <a href="#projects">Projects</a>
+.form-group {
 
-                    <a href="#contact">Contact</a>
+    margin-bottom: 20px;
 
-                </div>
+}
 
-            </div>
 
+.form-group label {
 
-            <div class="footer-bottom">
+    display: block;
 
-                <p>
+    font-size: 0.9rem;
 
-                    © <span id="currentYear"></span>
-                    RavensT .
+    font-weight: 600;
 
-                    All rights reserved.
+    margin-bottom: 8px;
 
-                </p>
+}
 
-                <p>
-                    Made with using HTML, CSS & JavaScript
-                </p>
 
-            </div>
+.form-group input,
+.form-group textarea {
 
-        </div>
+    width: 100%;
 
-    </footer>
+    padding: 13px 15px;
 
+    border: 1px solid var(--border);
 
-    <!-- Back to Top Button -->
+    border-radius: 8px;
 
-    <button class="back-to-top"
-            id="backToTop"
-            aria-label="Back to top">
+    background: var(--surface);
 
-        ↑
+    color: var(--text);
 
-    </button>
+    outline: none;
 
-<!-- =========================================
-     SCHOOL PROJECT DOCUMENTATION WINDOW
-========================================= -->
+    font-size: 0.9rem;
 
-<div class="school-doc-overlay"
-     id="schoolDocumentation"
-     aria-hidden="true">
+    transition: border-color 0.3s ease;
 
-    <div class="school-doc-window"
-         role="dialog"
-         aria-modal="true"
-         aria-labelledby="schoolDocTitle"
-         tabindex="-1">
+}
 
-        <!-- DOCUMENTATION HEADER -->
-        <div class="school-doc-header">
 
-            <div>
-                <p class="school-doc-eyebrow">SCHOOL PROJECT</p>
+.form-group input:focus,
+.form-group textarea:focus {
 
-                <h2 id="schoolDocTitle">
-                    Website <span>Documentation</span>
-                </h2>
+    border-color: var(--primary);
 
-                <p class="school-doc-intro">
-                    Discover the planning, teamwork, design, coding,
-                    and testing behind the RavensTech portfolio website.
-                </p>
-            </div>
+}
 
-            <button type="button"
-                    class="school-doc-close"
-                    id="closeSchoolDocumentation"
-                    aria-label="Close documentation">
-                &times;
-            </button>
 
-        </div>
+.form-group textarea {
 
-        <!-- READING PROGRESS BAR -->
-        <div class="school-doc-progress">
-            <span id="schoolDocProgress"></span>
-        </div>
+    resize: vertical;
 
-        <!-- DOCUMENTATION CONTENT -->
-        <div class="school-doc-content">
+    min-height: 120px;
 
-            <!-- PART 1: INITIAL PLANNING & SETUP -->
-            <article class="school-doc-item">
+}
 
-                <div class="school-doc-image">
-                    <img
-                        src="assets/images/part1jpg.jpg"
-                        alt="Initial project planning"
-                        loading="lazy">
 
-                    <span>01</span>
-                </div>
+/* Form feedback */
 
-                <div class="school-doc-info">
+.form-message {
 
-                    <p class="school-doc-category">
-                        PLANNING & SETUP
-                    </p>
+    margin-top: 15px;
 
-                    <h3>Initial Planning & Setup</h3>
+    font-size: 0.85rem;
 
-                    <p>
-                        We prepared our workspace and organized the files
-                        needed for our final programming project. Our goal
-                        was to create a portfolio website where we could
-                        introduce ourselves, share our skills and backgrounds,
-                        and showcase our work as future engineers.
-                    </p>
+    color: var(--primary);
 
-                    <details class="school-doc-details">
+}
 
-                        <summary>Behind the Blueprint</summary>
 
-                        <p>
-                            Every project begins with a plan. We organized
-                            our workspace, prepared the necessary files,
-                            and outlined the sections of RavensTech. This
-                            gave us a clear starting point for building a
-                            portfolio that presents our team, skills,
-                            backgrounds, and work as future engineers.
-                        </p>
+/* =========================================
+   10. FOOTER
+========================================= */
 
-                    </details>
+.footer {
 
-                </div>
+    background: var(--surface);
 
-            </article>
+    border-top: 1px solid var(--border);
 
+    padding: 40px 0 20px;
 
-            <!-- PART 2: COLLABORATIVE BRAINSTORMING & CODING -->
-            <article class="school-doc-item">
+}
 
-                <div class="school-doc-image">
-                    <img
-                        src="assets/images/part2.jpg"
-                        alt="Team collaboration and coding"
-                        loading="lazy">
 
-                    <span>02</span>
-                </div>
+.footer-content {
 
-                <div class="school-doc-info">
+    display: flex;
 
-                    <p class="school-doc-category">
-                        TEAM COLLABORATION
-                    </p>
+    flex-direction: column;
 
-                    <h3>Collaborative Brainstorming & Coding</h3>
+    align-items: center;
 
-                    <p>
-                        We shared ideas, discussed the design, and worked
-                        together while writing our code. Each member
-                        contributed suggestions and helped plan the website's
-                        different sections to keep everything organized
-                        and aligned with our goals.
-                    </p>
+    text-align: center;
 
-                    <details class="school-doc-details">
+    gap: 15px;
 
-                        <summary>Where Ideas Connect</summary>
+}
 
-                        <p>
-                            Collaboration helped turn individual ideas into
-                            one shared vision. We exchanged suggestions,
-                            discussed design choices, and worked together
-                            while coding. By contributing our thoughts and
-                            helping solve problems, we shaped a website that
-                            reflects our team's goals.
-                        </p>
 
-                    </details>
+.footer-content > p {
 
-                </div>
+    color: var(--text-light);
 
-            </article>
+    font-size: 0.9rem;
 
+}
 
-            <!-- PART 3: FRONT-END SHOWCASE & INTERFACE PREVIEW -->
-            <article class="school-doc-item">
 
-                <div class="school-doc-image">
-                    <img
-                        src="assets/images/part3.jpg"
-                        alt="RavensTech website interface preview"
-                        loading="lazy">
+/* Footer navigation */
 
-                    <span>03</span>
-                </div>
+.footer-links {
 
-                <div class="school-doc-info">
+    display: flex;
 
-                    <p class="school-doc-category">
-                        INTERFACE PREVIEW
-                    </p>
+    flex-wrap: wrap;
 
-                    <h3>Front-End Showcase & Interface Preview</h3>
+    justify-content: center;
 
-                    <p>
-                        We previewed the website to review its appearance
-                        and progress. It features our personal information,
-                        skills, recent works, and project showcases.
-                        Seeing our ideas come together helped us evaluate
-                        the design as we moved closer to completion.
-                    </p>
+    gap: 20px;
 
-                    <details class="school-doc-details">
+    margin: 15px 0;
 
-                        <summary>A First Look at RavensTech</summary>
+}
 
-                        <p>
-                            With the main interface taking shape, we
-                            previewed how visitors would experience our
-                            website. We reviewed the personal introductions,
-                            skills, recent works, and project showcases,
-                            checking how each section connected to create
-                            a consistent and organized layout.
-                        </p>
 
-                    </details>
+.footer-links a {
 
-                </div>
+    color: var(--text-light);
 
-            </article>
+    font-size: 0.85rem;
 
+    transition: color 0.3s ease;
 
-            <!-- PART 4: SOURCE CODE DEVELOPMENT -->
-            <article class="school-doc-item">
+}
 
-                <div class="school-doc-image">
-                    <img
-                        src="assets/images/part4..jpg"
-                        alt="Source code development"
-                        loading="lazy">
 
-                    <span>04</span>
-                </div>
+.footer-links a:hover {
 
-                <div class="school-doc-info">
+    color: var(--primary);
 
-                    <p class="school-doc-category">
-                        CODING & DEVELOPMENT
-                    </p>
+}
 
-                    <h3>Source Code Development</h3>
 
-                    <p>
-                        We developed RavensTech using HTML, CSS, and
-                        JavaScript. We worked on the website's structure,
-                        visual design, and interactive features to make
-                        it more attractive, organized, and user-friendly.
-                    </p>
+/* Copyright */
 
-                    <details class="school-doc-details">
+.footer-bottom {
 
-                        <summary>Under the Hood</summary>
+    border-top: 1px solid var(--border);
 
-                        <p>
-                            Behind the interface are three essential
-                            technologies. HTML structures the content,
-                            CSS creates the visual design and responsive
-                            layout, and JavaScript powers interactive
-                            features. By combining these technologies,
-                            we transformed our plans and designs into
-                            a working RavensTech website.
-                        </p>
+    margin-top: 30px;
 
-                    </details>
+    padding-top: 20px;
 
-                </div>
+    display: flex;
 
-            </article>
+    justify-content: space-between;
 
+    gap: 15px;
 
-            <!-- PART 5: FINAL TESTING & DEVELOPMENT -->
-            <article class="school-doc-item">
+    color: var(--text-light);
 
-                <div class="school-doc-image">
-                    <img
-                        src="images/testing.jpg"
-                        alt="Final project testing and review"
-                        loading="lazy">
+    font-size: 0.8rem;
 
-                    <span>05</span>
-                </div>
+}
 
-                <div class="school-doc-info">
 
-                    <p class="school-doc-category">
-                        TESTING & IMPROVEMENT
-                    </p>
+/* =========================================
+   11. BACK TO TOP BUTTON
+========================================= */
 
-                    <h3>Final Testing & Development</h3>
+.back-to-top {
 
-                    <p>
-                        We tested RavensTech to check its appearance,
-                        responsiveness, and functionality on different
-                        screen sizes. We made final adjustments and
-                        improvements to ensure the website worked properly
-                        and was ready for submission.
-                    </p>
+    position: fixed;
 
-                    <details class="school-doc-details">
+    bottom: 25px;
 
-                        <summary>The Final Polish</summary>
+    right: 25px;
 
-                        <p>
-                            Before submission, we reviewed RavensTech
-                            across different screen sizes and tested its
-                            appearance, responsiveness, and interactive
-                            features. We identified issues, made adjustments,
-                            and refined the website to improve its usability
-                            and reliability. These final checks helped
-                            prepare our project for presentation.
-                        </p>
+    width: 45px;
 
-                    </details>
+    height: 45px;
 
-                </div>
+    border: none;
 
-            </article>
+    border-radius: 50%;
 
-        </div>
+    background: var(--primary);
 
-        <!-- DOCUMENTATION FOOTER -->
-        <div class="school-doc-footer">
+    color: white;
 
-            <span>RavensTech</span>
+    font-size: 1.5rem;
 
-            <p>Learn • Create • Improve</p>
+    cursor: pointer;
 
-            <button type="button"
-                    id="schoolDocBackToTop">
-                ↑ Back to top
-            </button>
+    opacity: 0;
 
-        </div>
+    visibility: hidden;
 
-    </div>
+    transform: translateY(15px);
 
-</div>
+    transition: 0.3s ease;
 
-<!-- END SCHOOL PROJECT DOCUMENTATION WINDOW -->
+    z-index: 999;
 
-    <!-- SECRET SNAKE GAME POPUP -->
-    <div id="snakeModal" class="snake-modal" aria-hidden="true">
-        <div class="snake-window" role="dialog"
-             aria-modal="true" aria-labelledby="snakeTitle">
+}
 
-            <button type="button" id="snakeClose"
-                    class="snake-close" aria-label="Close game">
-                &times;
-            </button>
 
-            <p class="snake-secret-label">SECRET UNLOCKED</p>
-            <h2 id="snakeTitle">Ravens<span>Snake</span></h2>
+.back-to-top.show {
 
-            <p class="snake-instructions">
-                Eat the pink food. Don't hit the walls or yourself!
-            </p>
+    opacity: 1;
 
-            <!-- PLAYER PROFILES -->
-            <div class="snake-players">
-                <label for="snakePlayer">Playing as</label>
+    visibility: visible;
 
+    transform: translateY(0);
 
-                <div class="snake-player-row">
-                    <select id="snakePlayer"></select>
+}
 
-                    <button type="button" id="snakeAddPlayer">
-                        + Add Player
-                    </button>
 
-                    <button type="button" id="snakeRemovePlayer">
-                        Remove Player
-                    </button>
-                </div>
+.back-to-top:hover {
 
-                <div id="snakeNewPlayerForm" hidden>
-                    <input
-                        type="text"
-                        id="snakePlayerName"
-                        maxlength="20"
-                        placeholder="Enter player name"
-                        autocomplete="off"
-                    >
-                    <button type="button" id="snakeSavePlayer">
-                        Save Player
-                    </button>
-                </div>
+    background: var(--primary-dark);
 
-                <p id="snakePlayerNotice" aria-live="polite"></p>
-            </div>
+    transform: translateY(-5px);
 
+}
 
-            <div class="snake-score">
-                SCORE: <span id="snakeScore">0</span>
-            </div>
 
-            <!-- LEADERBOARD -->
-            <div class="snake-leaderboard">
-                <h3>🏆 Leaderboard</h3>
+/* =========================================
+   12. SECTION ANIMATIONS
+========================================= */
 
-            <p class="snake-leaderboard-note">
-                Shared online leaderboard · Updates across devices
-            </p>
+/* Initial animation state */
 
-            <p id="snakeOnlineStatus" aria-live="polite">
-                Connecting to online leaderboard...
-            </p>
+.reveal {
 
-                <ol id="snakeLeaderboard"></ol>
-            </div>
+    opacity: 0;
 
+    transform: translateY(35px);
 
-            <div class="snake-board">
-                <canvas id="snakeCanvas"
-                        width="320" height="320"
-                        aria-label="Snake game board"></canvas>
+    transition:
 
-                <div id="snakeMessage" class="snake-message">
-                    <h3>Ready to play?</h3>
-                    <p>Use the arrow keys to move.</p>
-                    <button type="button" id="snakeStart"
-                            class="snake-action">
-                        Start Game
-                    </button>
-                </div>
-            </div>
+        opacity 0.7s ease,
 
-            <div class="snake-controls" aria-label="Touch controls">
-                <button type="button" data-snake-dir="up"
-                        aria-label="Move up">▲</button>
+        transform 0.7s ease;
 
-                <div class="snake-control-row">
-                    <button type="button" data-snake-dir="left"
-                            aria-label="Move left">◀</button>
-                    <button type="button" data-snake-dir="down"
-                            aria-label="Move down">▼</button>
-                    <button type="button" data-snake-dir="right"
-                            aria-label="Move right">▶</button>
-                </div>
-            </div>
+}
 
-            <p class="snake-footer">
-                RavensTech Easter Egg · Tap the logo three times to discover
-            </p>
-        </div>
-    </div>
 
-    <!-- =========================================
-        PYTHON PROGRAMS DOCUMENTATION WINDOW
-    ========================================= -->
+/* Visible state */
 
-    <div class="school-doc-overlay"
-        id="pythonDocumentation"
-        aria-hidden="true">
+.reveal.visible {
 
-        <div class="school-doc-window"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="pythonDocTitle"
-            tabindex="-1">
+    opacity: 1;
 
-            <div class="school-doc-header">
-                <div>
-                    <p class="school-doc-eyebrow">PYTHON PROJECT MIDTERMS</p>
-                    <h2 id="pythonDocTitle">
-                        Python Programs Collection
-                    </h2>
-                    <p>
-                        Explore the source code and functions
-                        behind our Python programs.
-                    </p>
-                </div>
+    transform: translateY(0);
 
-                <button class="school-doc-close"
-                        type="button"
-                        data-close-python>
-                    &times;
-                </button>
-            </div>
+}
 
-            <div class="school-doc-progress">
-                <div id="pythonProgress"></div>
-            </div>
 
-            <div class="school-doc-body">
+/* =========================================
+   13. RESPONSIVE DESIGN
+========================================= */
 
-                <div class="python-introduction">
-                    <h3>Our Programming Team</h3>
-                    <p>
-                        Each member developed a Python program
-                        showcasing their programming knowledge
-                        and problem-solving skills for our midterm 
-                        project. Explore the source code and functions 
-                        behind each program to learn how they work.
-                    </p>
-                </div>
 
-                <div id="pythonMemberList"></div>
+/* Tablet */
 
-            </div>
+@media (max-width: 992px) {
 
-            <div class="school-doc-footer">
-                <span>RavensTech | Python Collection</span>
+    .hero-container {
 
-                <button type="button" id="pythonTop">
-                    Back to Top ↑
-                </button>
-            </div>
+        grid-template-columns: 1fr 1fr;
 
-        </div>
-    </div>
+        gap: 30px;
 
+    }
 
-    <!-- =========================================
-        SNAKE GAME SOURCE DOCUMENTATION WINDOW
-    ========================================= -->
 
-    <div class="school-doc-overlay"
-        id="snakeDocumentation"
-        aria-hidden="true">
+    .about-content {
 
-        <div class="school-doc-window"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="snakeDocTitle"
-            tabindex="-1">
+        gap: 35px;
 
-            <div class="school-doc-header">
-                <div>
-                    <p class="school-doc-eyebrow">GAME DEVELOPMENT</p>
+    }
 
-                    <h2 id="snakeDocTitle">
-                        RavensTech Snake Game
-                    </h2>
+    .projects-grid {
 
-                    <p>
-                        Explore the source code and functions
-                        behind our Snake game.
-                    </p>
-                </div>
+        grid-template-columns: repeat(2, 1fr);
 
-                <button class="school-doc-close"
-                        type="button"
-                        data-close-snake>
-                    &times;
-                </button>
-            </div>
+    }
 
-            <div class="school-doc-progress">
-                <div id="snakeProgress"></div>
-            </div>
 
-            <div class="school-doc-body">
+    .contact-container {
 
-                <div class="python-introduction">
-                    <h3>Game Development Documentation</h3>
+        gap: 30px;
 
-                    <p>
-                        Learn how the game works through its
-                        individual source-code sections.
-                    </p>
-                </div>
+    }
 
-                <div id="snakeFunctionList"></div>
+}
 
-            </div>
 
-            <div class="school-doc-footer">
-                <span>RavensTech | Snake Game</span>
+/* Mobile */
 
-                <button type="button" id="snakeTop">
-                    Back to Top ↑
-                </button>
-            </div>
+@media (max-width: 768px) {
 
-        </div>
-    </div>
+    .section {
 
-    <!-- EMAILJS LIBRARY -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+        padding: 75px 0;
 
-    <!-- Supabase connection -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    }
 
-    <!-- Your website JavaScript -->
-    <script src="script.js"></script>
-    
-<!-- RAVENSTECH LOADING SCREEN -->
-<div class="page-loader" id="pageLoader">
-    <div class="loader-content">
 
-        <div class="loader-logo">
-            <div class="loader-ring"></div>
-            <span>R</span>
-        </div>
+    /* Mobile navigation */
 
-        <h1 class="loader-title">
-            Ravens<span>Tech</span>
-        </h1>
+    .navbar {
 
-        <p class="loader-subtitle">
-            COLLEGE STUDENTS & ASPIRING DEVELOPERS
-        </p>
+        min-height: 70px;
 
-        <div class="loader-bar">
-            <div class="loader-progress"></div>
-        </div>
+    }
 
-        <p class="loader-status">Preparing your experience...</p>
 
-    </div>
-</div>
+    .menu-toggle {
 
+        display: block;
 
-</body>
-</html>
+        order: 3;
+
+    }
+
+
+    .theme-toggle {
+
+        margin-left: auto;
+
+        margin-right: 15px;
+
+    }
+
+
+    .nav-links {
+
+        position: absolute;
+
+        top: 70px;
+
+        left: 0;
+
+        width: 100%;
+
+        background: var(--background);
+
+        border-bottom: 1px solid var(--border);
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 0;
+
+        max-height: 0;
+
+        overflow: hidden;
+
+        opacity: 0;
+
+        visibility: hidden;
+
+        transition:
+
+            max-height 0.4s ease,
+
+            opacity 0.3s ease,
+
+            visibility 0.3s ease;
+
+    }
+
+
+    /* Menu opened */
+
+    .nav-links.open {
+
+        max-height: 400px;
+
+        opacity: 1;
+
+        visibility: visible;
+
+        padding: 15px 0;
+
+    }
+
+
+    .nav-links li {
+
+        width: 100%;
+
+        text-align: center;
+
+    }
+
+
+    .nav-link {
+
+        display: block;
+
+        padding: 12px 0;
+
+    }
+
+
+    .nav-link::after {
+
+        display: none;
+
+    }
+
+
+    /* Hero */
+
+    .hero {
+
+        min-height: auto;
+
+        padding: 80px 0;
+
+    }
+
+
+    .hero-container {
+
+        grid-template-columns: 1fr;
+
+        text-align: center;
+
+    }
+
+
+    .hero-content {
+
+        order: 1;
+
+    }
+
+
+    .hero-image {
+
+        order: 2;
+
+    }
+
+
+    .hero-description {
+
+        margin-left: auto;
+
+        margin-right: auto;
+
+    }
+
+
+    .hero-buttons {
+
+        justify-content: center;
+
+    }
+
+
+    .social-links {
+
+        justify-content: center;
+
+    }
+
+
+    .profile-card {
+
+        max-width: 300px;
+
+        min-height: 300px;
+
+    }
+
+
+    .profile-icon {
+
+        font-size: 5rem;
+
+    }
+
+
+    /* About */
+
+    .about-content {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .about-image {
+
+        order: 1;
+
+    }
+
+
+    .about-text {
+
+        order: 2;
+
+    }
+
+
+    .about-card {
+
+        max-width: 300px;
+
+    }
+
+
+    /* Projects */
+
+    .projects-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    /* Contact */
+
+    .contact-container {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .contact-form {
+
+        padding: 25px;
+
+    }
+
+
+    /* Footer */
+
+    .footer-bottom {
+
+        flex-direction: column;
+
+        text-align: center;
+
+    }
+
+}
+
+
+/* Small mobile */
+
+@media (max-width: 400px) {
+
+    .logo {
+
+        font-size: 1.2rem;
+
+    }
+
+
+    .hero-content h1 {
+
+        font-size: 2.8rem;
+
+    }
+
+
+    .hero-buttons {
+
+        flex-direction: column;
+
+    }
+
+
+    .btn {
+
+        width: 100%;
+
+    }
+
+
+    .about-info {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .contact-form {
+
+        padding: 20px;
+
+    }
+
+}
+
+/* =========================================
+   FIX: REDUCE EXCESSIVE WEBSITE SPACING
+========================================= */
+
+/* Reduce spacing between all sections */
+.section {
+    padding: 60px 0;
+}
+
+/* Make the Hero section shorter */
+.hero {
+    min-height: 75vh;
+}
+
+/* Reduce space below section headings */
+.section-heading {
+    margin: 0 auto 35px;
+}
+
+/* Reduce spacing inside the About section */
+.about-content {
+    gap: 30px;
+}
+
+/* Reduce spacing before Education */
+.about-education {
+    margin-top: 30px;
+    padding-top: 25px;
+}
+
+/* Reduce spacing around Project cards */
+.projects-grid {
+    gap: 20px;
+}
+
+/* Reduce spacing around Contact section */
+.contact-container {
+    gap: 35px;
+}
+
+/* Keep spacing comfortable on mobile */
+@media (max-width: 768px) {
+
+    .section {
+        padding: 45px 0;
+    }
+
+    .hero {
+        min-height: auto;
+        padding: 60px 0;
+    }
+
+    .section-heading {
+        margin-bottom: 30px;
+    }
+
+    .about-content {
+        gap: 25px;
+    }
+
+    .contact-container {
+        gap: 25px;
+    }
+
+}
+
+/* =========================================
+   MODERN ABOUT SECTION REDESIGN
+========================================= */
+
+.about {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.about::before {
+    content: "";
+    position: absolute;
+    width: 380px;
+    height: 380px;
+    top: 180px;
+    left: -240px;
+    background: var(--primary);
+    opacity: 0.07;
+    filter: blur(100px);
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.about .section-heading {
+    margin-bottom: 55px;
+}
+
+.about .section-subtitle {
+    display: inline-block;
+    padding: 7px 15px;
+    border: 1px solid rgba(230, 57, 70, 0.25);
+    border-radius: 50px;
+    background: rgba(230, 57, 70, 0.08);
+}
+
+.about .section-heading h2 {
+    font-size: clamp(2.5rem, 5vw, 3.8rem);
+    letter-spacing: -1.5px;
+}
+
+/* Main layout */
+
+.about-content {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: start;
+    gap: 45px;
+}
+
+/* Profile card */
+
+.about-image {
+    min-width: 0;
+}
+
+.about-card {
+    position: sticky;
+    top: 110px;
+    width: 100%;
+    max-width: none;
+    padding: 40px 28px;
+    text-align: center;
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(230, 57, 70, 0.16),
+            transparent 65%
+        ),
+        var(--card);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: border-color 0.3s ease,
+                transform 0.3s ease;
+}
+
+.about-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-5px);
+}
+
+.about-emoji {
+    width: 105px;
+    height: 105px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 25px;
+    border-radius: 28px;
+    font-size: 3.5rem;
+    background: linear-gradient(
+        135deg,
+        rgba(230, 57, 70, 0.2),
+        rgba(230, 57, 70, 0.04)
+    );
+    border: 1px solid rgba(230, 57, 70, 0.3);
+    box-shadow: 0 12px 35px rgba(230, 57, 70, 0.1);
+}
+
+.about-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.about-card > p {
+    color: var(--text-light);
+    font-size: 0.95rem;
+}
+
+.about-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    margin-top: 24px;
+    padding: 9px 14px;
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    color: var(--text-light);
+    font-size: 0.8rem;
+    background: var(--surface);
+}
+
+.about-status span {
+    width: 8px;
+    height: 8px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #35c779;
+    box-shadow: 0 0 10px rgba(53, 199, 121, 0.5);
+}
+
+/* Introduction */
+
+.about-text {
+    min-width: 0;
+}
+
+.about-text > h3 {
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+    margin-bottom: 22px;
+}
+
+.about-text > p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+    line-height: 1.9;
+    font-size: 0.95rem;
+}
+
+/* Personal information grid */
+
+.about-info {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 30px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+    padding: 18px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card);
+    transition: border-color 0.25s ease,
+                transform 0.25s ease,
+                background 0.25s ease;
+}
+
+.info-item:hover {
+    border-color: var(--primary);
+    background: var(--surface);
+    transform: translateY(-3px);
+}
+
+.info-item strong {
+    color: var(--primary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-item span {
+    color: var(--text);
+    font-size: 0.9rem;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+
+/* =========================================
+   LIGHT AND DARK MODE FADE ANIMATION
+========================================= */
+
+/* Smoothly change the website colors */
+
+body,
+.header,
+.navbar,
+.nav-links,
+.hero,
+.about,
+.projects,
+.contact,
+.footer,
+.profile-card,
+.about-card,
+.skill-card,
+.project-card,
+.education-item,
+.contact-form,
+.theme-toggle,
+input,
+textarea,
+button {
+
+    transition:
+        background 0.5s ease,
+        background-color 0.5s ease,
+        color 0.5s ease,
+        border-color 0.5s ease,
+        box-shadow 0.5s ease;
+
+}
+
+/* Smooth text color changes */
+
+h1,
+h2,
+h3,
+h4,
+p,
+a,
+span,
+li {
+
+    transition: color 0.5s ease;
+
+}
+/* Education card picture */
+
+.education-icon {
+    width: 58px;
+    height: 58px;
+    border-radius: 16px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #FCE8F0;
+    border: 1px solid #F0CEDC;
+}
+
+.education-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* =========================================
+   HERO PROFILE CARD - LAYERED DESIGN
+========================================= */
+
+.hero-image .profile-card {
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    max-width: 350px;
+    min-height: 330px;
+
+    margin: 65px auto 0;
+    padding: 105px 25px 35px;
+
+    border-radius: 25px;
+    text-align: center;
+    z-index: 1;
+}
+
+
+/* Remove the old decorative circle */
+.hero-image .profile-card .profile-decoration {
+    display: none;
+}
+
+/* Logo image */
+.hero-image .profile-card .profile-icon img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    border-radius: 50%;
+}
+
+/* Name */
+.hero-image .profile-card h3 {
+    position: relative;
+    z-index: 2;
+
+    margin-top: 12px;
+    margin-bottom: 8px;
+
+    font-size: 1.45rem;
+    font-weight: 700;
+}
+
+/* Role */
+.hero-image .profile-card p {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+    font-size: 1rem;
+    opacity: 0.85;
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+    .hero-image .profile-card {
+        max-width: 320px;
+        min-height: 320px;
+
+        margin-top: 65px;
+        padding: 100px 20px 30px;
+    }
+
+    .hero-image .profile-card::before {
+        width: 220px;
+        height: 220px;
+
+        top: -80px;
+        right: -5px;
+    }
+
+    .hero-image .profile-card .profile-icon {
+        width: 145px;
+        height: 145px;
+
+        top: -55px;
+    }
+}
+
+/* =========================================
+   RAVENSTECH LOGO - NEON ORBIT DESIGN
+   Keeps the original logo image unchanged
+========================================= */
+
+/* Logo area */
+.hero-image .profile-card .profile-icon {
+    position: absolute;
+    top: -58px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+
+    border:2px solid #f2a8c5;
+    border-radius: 100%;
+    background: var(--card);
+
+    overflow: visible;
+    z-index: 3;
+
+    transition:
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+}
+
+/* Rotating orbit ring */
+.hero-image .profile-card .profile-icon::before {
+    content: "";
+    position: absolute;
+
+    inset: -30px;
+
+    border: 2px solid rgba(212, 122, 158, 0.55);
+    border-right-color: transparent;
+    border-bottom-color: rgba(126, 65, 89, 0.12);
+
+    border-radius: 90%;
+
+    animation: logoOrbit 8s linear infinite;
+
+    pointer-events: logoOrbit;
+    z-index: -1;
+}
+
+
+/* Soft light behind the logo */
+.hero-image .profile-card::before {
+    content: "";
+    position: absolute;
+
+    width: 230px;
+    height: 230px;
+
+    top: -95px;
+    left: 50%;
+
+    transform: translateX(-50%);
+    border-radius: 50%;
+
+    background: radial-gradient(
+        circle,
+        rgba(242, 168, 197, 0.23) 0%,
+        rgba(242, 168, 197, 0.09) 45%,
+        transparent 72%
+    );
+
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Hover effect */
+.hero-image .profile-card:hover .profile-icon {
+    transform: translateX(-50%) scale(1.04);
+
+    box-shadow:
+        0 0 18px rgba(242, 168, 197, 0.75),
+        0 0 40px rgba(242, 168, 197, 0.3);
+}
+
+/* Orbit animation */
+@keyframes logoOrbit {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    .hero-image .profile-card .profile-icon::before {
+        animation: 8sec;
+    }
+}
+
+/* =========================================
+   BIGGER RAVENSTECH LOGO
+========================================= */
+
+/* Enlarge the logo and its glowing border */
+.hero-image .profile-card .profile-icon {
+    width: 300px;
+    height: 300px;
+    top: -25px;
+
+    padding: 6px;
+
+    box-shadow:
+        0 0 16px rgba(242, 168, 197, 0.65),
+        0 0 38px rgba(242, 168, 197, 0.3);
+
+    transition:
+        box-shadow 0.4s ease,
+        transform 0.4s ease;
+}
+
+/* Make the orbit larger too */
+.hero-image .profile-card .profile-icon::before {
+    inset: -30px;
+}
+
+/* Enlarge the background glow */
+.hero-image .profile-card::before {
+    width: 100px;
+    height: 100px;
+    top: -10px;
+}
+
+/* Slightly bigger hover glow */
+.hero-image .profile-card:hover .profile-icon {
+    transform: translateX(-50%) scale(1.25);
+
+    box-shadow:
+        0 0 22px rgba(242, 168, 197, 0.8),
+        0 0 48px rgba(242, 168, 197, 0.35);
+}
+
+/* Responsive logo size */
+@media (max-width: 768px) {
+    .hero-image .profile-card .profile-icon {
+        width: 180px;
+        height: 180px;
+        top: -10px;
+    }
+
+    .hero-image .profile-card .profile-icon::before {
+        inset: -12px;
+    }
+
+    .hero-image .profile-card::before {
+        width: 180px;
+        height: 180px;
+        top: -25px;
+    }
+
+    .hero-image .profile-card {
+        padding-top: 1000px;
+    }
+}
+
+/* =========================================
+   KEYFRAMES
+========================================= */
+
+@keyframes ringRotate {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes logoReveal {
+    from {
+        opacity: 0;
+        transform: scale(0.65) rotate(-12deg);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes textReveal {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes loaderContentEnter {
+    from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes progressMove {
+    from {
+        transform: translateX(-110%);
+    }
+
+    to {
+        transform: translateX(280%);
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    .loader-content,
+    .loader-logo,
+    .loader-ring,
+    .loader-logo span,
+    .loader-title,
+    .loader-subtitle,
+    .loader-bar,
+    .loader-status,
+    .loader-progress {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* =========================================
+   SECRET RAVENSTECH SNAKE GAME
+   Only styles the hidden game popup.
+========================================= */
+
+.snake-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    overflow-y: auto;
+    background: rgba(12, 5, 16, 0.82);
+    backdrop-filter: blur(10px);
+}
+
+.snake-modal.snake-open {
+    display: flex;
+    animation: snakeFadeIn 0.25s ease;
+}
+
+.snake-window {
+    position: relative;
+    width: min(100%, 430px);
+    max-height: 95vh;
+    overflow-y: auto;
+    padding: 28px 22px 22px;
+    border: 1px solid rgba(232, 50, 133, 0.65);
+    border-radius: 22px;
+    background: #1b101d;
+    color: #fff5fa;
+    text-align: center;
+    box-shadow:
+        0 0 25px rgba(232, 50, 133, 0.25),
+        0 0 70px rgba(232, 50, 133, 0.12);
+}
+
+.snake-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.snake-close:hover {
+    background: #e83285;
+    transform: rotate(90deg);
+}
+
+.snake-secret-label {
+    margin-bottom: 5px;
+    color: #ff75b7;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.snake-window h2 {
+    margin: 0 0 8px;
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.snake-window h2 span {
+    color: #ff4da6;
+}
+
+.snake-instructions {
+    margin-bottom: 15px;
+    color: #e8d5e1;
+    font-size: 12px;
+}
+
+.snake-score {
+    margin-bottom: 10px;
+    color: #ff75b7;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.snake-board {
+    position: relative;
+    width: min(100%, 320px);
+    margin: 0 auto;
+    overflow: hidden;
+    border: 2px solid #e83285;
+    border-radius: 10px;
+    background: #100d14;
+    box-shadow: 0 0 18px rgba(232, 50, 133, 0.2);
+}
+
+#snakeCanvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    touch-action: none;
+}
+
+.snake-message {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background: rgba(16, 13, 20, 0.88);
+}
+
+.snake-message[hidden] {
+    display: none;
+}
+
+.snake-message h3 {
+    margin: 0;
+    color: #ff75b7;
+    font-size: 22px;
+}
+
+.snake-message p {
+    margin: 0;
+    font-size: 12px;
+    color: #f3dce8;
+}
+
+.snake-action {
+    padding: 11px 22px;
+    border: 0;
+    border-radius: 30px;
+    background: #e83285;
+    color: white;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.snake-action:hover {
+    background: #ff4da6;
+    transform: translateY(-2px);
+}
+
+.snake-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+    margin-top: 15px;
+}
+
+.snake-control-row {
+    display: flex;
+    gap: 10px;
+}
+
+.snake-controls button {
+    width: 46px;
+    height: 40px;
+    border: 1px solid rgba(255, 77, 166, 0.65);
+    border-radius: 10px;
+    background: rgba(232, 50, 133, 0.14);
+    color: #ff8ac3;
+    font-size: 17px;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+}
+
+.snake-controls button:active {
+    background: #e83285;
+    color: white;
+}
+
+.snake-footer {
+    margin-top: 17px;
+    color: #c9a9bc;
+    font-size: 10px;
+}
+
+@keyframes snakeFadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media (max-width: 380px) {
+    .snake-window {
+        padding: 25px 13px 17px;
+    }
+
+    .snake-window h2 {
+        font-size: 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .snake-modal.snake-open {
+        animation: none;
+    }
+}
+
+/* =========================================
+   FIX: REMOVE THE WHITE SNAKE POPUP SCROLLBAR
+========================================= */
+
+/* Prevent the popup background from scrolling */
+.snake-modal {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.snake-modal::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide the scrollbar inside the game window too */
+.snake-window {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.snake-window::-webkit-scrollbar {
+    display: none;
+}
+
+/* Keep the popup centered and within the screen */
+.snake-modal {
+    box-sizing: border-box;
+    overflow-y: auto;
+    padding: 18px;
+}
+
+.snake-window {
+    box-sizing: border-box;
+    max-height: calc(100dvh - 36px);
+    overflow-y: auto;
+}
+
+/* PLAYER PROFILES */
+.snake-players {
+    margin: 16px 0;
+    text-align: left;
+}
+
+.snake-players label {
+    display: block;
+    margin-bottom: 7px;
+    color: #ff75b7;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.snake-player-row {
+    display: flex;
+    gap: 8px;
+}
+
+.snake-players select,
+.snake-players input {
+    min-width: 0;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid rgba(255, 77, 166, 0.55);
+    border-radius: 9px;
+    background: #100d14;
+    color: #fff5fa;
+    font: inherit;
+    font-size: 12px;
+}
+
+.snake-players button {
+    padding: 9px 11px;
+    border: 1px solid #e83285;
+    border-radius: 9px;
+    background: rgba(232, 50, 133, 0.15);
+    color: #ff8ac3;
+    font: inherit;
+    font-size: 11px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+#snakeNewPlayerForm {
+    display: flex;
+    gap: 8px;
+    margin-top: 9px;
+}
+
+#snakeNewPlayerForm[hidden] {
+    display: none;
+}
+
+#snakePlayerNotice {
+    margin-top: 7px;
+    color: #ffb0dc;
+    font-size: 11px;
+}
+
+/* LEADERBOARD */
+.snake-leaderboard {
+    margin: 18px 0;
+    padding: 14px;
+    border: 1px solid rgba(255, 77, 166, 0.35);
+    border-radius: 12px;
+    background: rgba(255, 77, 166, 0.045);
+    text-align: left;
+}
+
+.snake-leaderboard h3 {
+    margin: 0;
+    color: #ff75b7;
+    font-size: 16px;
+    text-align: center;
+}
+
+.snake-leaderboard-note {
+    margin: 5px 0 12px;
+    color: #c9a9bc;
+    font-size: 11px;
+    text-align: center;
+}
+
+#snakeLeaderboard {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#snakeLeaderboard li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 3px;
+    border-bottom: 1px solid rgba(255, 117, 183, 0.12);
+    color: #fff5fa;
+    font-size: 12px;
+}
+
+#snakeLeaderboard li:last-child {
+    border-bottom: 0;
+}
+
+#snakeLeaderboard .snake-rank {
+    margin-right: 7px;
+    color: #ff75b7;
+    font-weight: 800;
+}
+
+#snakeLeaderboard .snake-best-score {
+    color: #ff75b7;
+    font-weight: 800;
+}
+
+#snakeLeaderboard .snake-empty {
+    justify-content: center;
+    color: #c9a9bc;
+}
+
+/* Remove Player button */
+#snakeRemovePlayer {
+    background: #3a2631;
+    color: #ff9fbd;
+    border: 1px solid #ff4d8d;
+    border-radius: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#snakeRemovePlayer:hover {
+    background: #64243e;
+    transform: translateY(-2px);
+}
+
+#snakeRemovePlayer:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================================
+   SNAKE PLAYER REMOVE CONFIRMATION
+========================================= */
+
+#snakeUndoRemove {
+    background: #29212a;
+    color: #ffb6d1;
+    border: 1px solid #ff4d8d;
+    border-radius: 8px;
+    padding: 9px 12px;
+    cursor: pointer;
+    font: inherit;
+    font-size: 12px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+#snakeUndoRemove:hover {
+    background: #49243a;
+    transform: translateY(-2px);
+}
+
+#snakeUndoRemove[hidden] {
+    display: none !important;
+}
+
+.snake-confirm-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: inherit;
+    background: rgba(0, 0, 0, 0.78);
+    backdrop-filter: blur(5px);
+}
+
+.snake-confirm-overlay[hidden] {
+    display: none !important;
+}
+
+.snake-confirm-box {
+    width: 100%;
+    max-width: 340px;
+    padding: 26px 22px;
+    box-sizing: border-box;
+    text-align: center;
+    background: #211923;
+    color: #fff;
+    border: 1px solid rgba(255, 77, 141, 0.45);
+    border-radius: 18px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    animation: snakeConfirmIn 0.22s ease-out;
+}
+
+.snake-confirm-icon {
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: rgba(255, 77, 141, 0.13);
+    border: 1px solid #ff4d8d;
+    color: #ff8ab3;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.snake-confirm-box h3 {
+    margin: 0 0 10px;
+    font-size: 20px;
+}
+
+.snake-confirm-box p {
+    margin: 0 0 22px;
+    color: #d8cbd8;
+    font-size: 13px;
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.snake-confirm-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.snake-confirm-actions button {
+    min-height: 40px;
+    padding: 10px 14px;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.snake-confirm-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.snake-cancel-remove {
+    background: #332b36;
+    border: 1px solid #625566;
+    color: #fff;
+}
+
+.snake-confirm-remove {
+    background: #e63946;
+    border: 1px solid #ff6570;
+    color: #fff;
+}
+
+.snake-confirm-remove:hover {
+    background: #c1121f;
+}
+
+@keyframes snakeConfirmIn {
+    from {
+        opacity: 0;
+        transform: scale(0.94) translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+@media (max-width: 480px) {
+    .snake-confirm-actions {
+        flex-direction: column-reverse;
+    }
+
+    .snake-confirm-actions button {
+        width: 100%;
+    }
+}
+
+/* =========================================
+   RAVENSTECH DOCUMENTATION SYSTEM
+   School + Python + Snake Game
+   Light and Dark Mode
+========================================= */
+
+/* Documentation overlay */
+.school-doc-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+    box-sizing: border-box;
+
+    background: rgba(20, 15, 22, 0.72);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+
+    overflow: hidden;
+}
+
+.school-doc-overlay.is-open {
+    display: flex;
+}
+
+/* Main documentation window */
+.school-doc-window {
+    position: relative;
+
+    width: 100%;
+    max-width: 1100px;
+    height: 90vh;
+    max-height: 850px;
+    min-width: 0;
+
+    margin: auto;
+    padding: 0;
+
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    background: var(--card);
+    color: var(--text);
+
+    border: 1px solid var(--primary);
+    border-radius: 28px;
+
+    box-shadow: var(--shadow);
+
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--surface);
+
+    animation: schoolDocAppear 0.3s ease-out;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease;
+}
+
+/* Popup animation */
+@keyframes schoolDocAppear {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.98);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Scrollbar */
+.school-doc-window::-webkit-scrollbar {
+    width: 9px;
+}
+
+.school-doc-window::-webkit-scrollbar-track {
+    background: var(--surface);
+    border-radius: 10px;
+}
+
+.school-doc-window::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.school-doc-window::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-dark);
+}
+
+/* Header */
+.school-doc-header {
+    position: relative;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 24px;
+    padding: 32px;
+
+    background: var(--surface);
+
+    border-bottom: 1px solid var(--border);
+}
+
+.school-doc-header > div {
+    flex: 1;
+    min-width: 0;
+}
+
+.school-doc-eyebrow,
+.school-doc-category {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.school-doc-header h2 {
+    margin: 12px 0;
+    color: var(--text);
+
+    font-size: clamp(25px, 4vw, 36px);
+    line-height: 1.25;
+
+    overflow-wrap: anywhere;
+}
+
+.school-doc-header h2 span {
+    color: var(--primary);
+}
+
+/* Close button */
+.hover {
+    transform: rotate(180deg) scale(1.08);
+    box-shadow: 0 0 18px rgba(230, 57, 70, 0.3);
+}
+
+.project-close-button {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+
+.school-doc-close:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Reading progress */
+.school-doc-progress {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+
+    width: 100%;
+    height: 4px;
+
+    background: var(--border);
+}
+
+/* HTML uses div progress elements, not spans */
+.school-doc-progress > div {
+    display: block;
+
+    width: 0;
+    height: 100%;
+
+    background: var(--primary);
+    transition: width 0.15s linear;
+}
+
+/* Documentation body
+   Matches the actual HTML class */
+.school-doc-body {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    padding: 26px;
+
+    min-width: 0;
+
+    background: var(--card);
+    color: var(--text);
+}
+
+/* Keep compatibility with older content class */
+.school-doc-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 20px;
+    padding: 26px;
+
+    min-width: 0;
+}
+
+/* School project cards */
+.school-doc-item {
+    display: grid;
+
+    grid-template-columns:
+        minmax(220px, 0.85fr)
+        minmax(0, 1.4fr);
+
+    align-items: center;
+    gap: 26px;
+
+    width: 100%;
+    min-width: 0;
+    padding: 22px;
+
+    box-sizing: border-box;
+
+    background: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 22px;
+
+    transition:
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        background 0.25s ease;
+}
+
+.school-doc-item:hover {
+    border-color: var(--primary);
+    background: var(--card);
+    transform: translateY(-2px);
+}
+
+/* Documentation images */
+.school-doc-image {
+    position: relative;
+
+    width: 100%;
+    min-width: 0;
+    height: 230px;
+
+    overflow: hidden;
+    border-radius: 16px;
+
+    background: var(--surface);
+}
+
+.school-doc-image img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+
+    transition: transform 0.4s ease;
+}
+
+.school-doc-item:hover .school-doc-image img {
+    transform: scale(1.04);
+}
+
+/* Number badge */
+.school-doc-image > span {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+    background: var(--primary);
+    color: #fff;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+/* Documentation text */
+.school-doc-info {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.school-doc-info .school-doc-category {
+    margin: 0 0 12px;
+    font-size: 11px;
+}
+
+.school-doc-info h3 {
+    margin: 0 0 14px;
+
+    color: var(--text);
+    font-size: clamp(19px, 2vw, 24px);
+    line-height: 1.4;
+}
+
+.school-doc-info > p:not(.school-doc-category) {
+    margin: 0 0 16px;
+
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* Expandable details */
+.school-doc-details {
+    margin-top: 12px;
+
+    border-top: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 12px;
+}
+
+.school-doc-details summary {
+    padding: 14px 0 4px;
+
+    color: var(--primary);
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+    line-height: 1.6;
+}
+
+.school-doc-details summary:hover {
+    color: var(--primary-dark);
+}
+
+.school-doc-details p {
+    margin: 12px 0 4px;
+
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.9;
+}
+
+/* =========================================
+   PYTHON & SNAKE DOCUMENTATION
+========================================= */
+
+/* Project introductions */
+.python-introduction {
+    padding: 20px;
+    margin-bottom: 22px;
+
+    border-radius: 16px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    color: var(--text);
+}
+
+.python-introduction h3 {
+    margin-bottom: 10px;
+    color: var(--primary);
+}
+
+.python-introduction p {
+    color: var(--text-muted);
+    line-height: 1.7;
+}
+
+/* Python member and Snake function cards */
+.source-document-card {
+    margin-bottom: 18px;
+
+    border: 1px solid var(--border);
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    background: var(--surface);
+    color: var(--text);
+
+    transition:
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.source-document-card:hover {
+    border-color: var(--primary);
+    background: var(--card);
+    transform: translateY(-3px);
+}
+
+/* Expandable card heading */
+.source-document-toggle {
+    width: 100%;
+    padding: 18px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    text-align: left;
+    color: var(--text);
+
+    background: transparent;
+    border: none;
+
+    font: inherit;
+    cursor: pointer;
+}
+
+.source-document-toggle:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: -3px;
+}
+
+/* Icon */
+.source-document-icon {
+    width: 85px;
+    min-width: 85px;
+    height: 85px;
+
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 35px;
+
+    background: var(--card);
+    color: var(--primary);
+    border: 1px solid var(--border);
+}
+
+/* Card information */
+.source-document-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.source-document-info h3 {
+    margin: 5px 0;
+
+    color: var(--text);
+    font-size: 17px;
+}
+
+.source-document-info p {
+    margin: 0;
+
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.source-document-category {
+    color: var(--primary);
+
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+/* Expand arrow */
+.source-document-arrow {
+    color: var(--primary);
+    font-size: 20px;
+
+    transition: transform 0.3s ease;
+}
+
+.source-document-card.expanded .source-document-arrow {
+    transform: rotate(180deg);
+}
+
+/* Expandable source code */
+.source-document-content {
+    display: none;
+    padding: 0 18px 20px;
+
+    color: var(--text);
+}
+
+.source-document-card.expanded .source-document-content {
+    display: block;
+}
+
+/* Code panel responds to theme */
+.source-document-content pre {
+    margin-top: 15px;
+    padding: 18px;
+
+    border-radius: 13px;
+    overflow-x: auto;
+
+    white-space: pre;
+
+    background: var(--code-bg);
+    border: 1px solid var(--border);
+    color: var(--code-text);
+
+    font-family: Consolas, monospace;
+    font-size: 12px;
+    line-height: 1.7;
+
+    max-height: 450px;
+}
+
+.source-document-content code {
+    color: inherit;
+    font-family: inherit;
+}
+
+/* Copy button */
+.source-copy-button {
+    margin-top: 12px;
+    padding: 10px 17px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: var(--primary);
+    color: #fff;
+
+    font-weight: 600;
+    cursor: pointer;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.source-copy-button:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
+/* Empty state */
+.source-empty {
+    padding: 15px;
+
+    border-radius: 12px;
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+/* =========================================
+   SHARED DOCUMENTATION FOOTER
+========================================= */
+
+.school-doc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    gap: 14px;
+    padding: 24px 30px;
+
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+
+    color: var(--text);
+}
+
+.school-doc-footer > span {
+    color: var(--primary);
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+.school-doc-footer p {
+    margin: 0;
+
+    color: var(--text-muted);
+    font-size: 13px;
+}
+
+.school-doc-footer button {
+    padding: 10px 16px;
+
+    border: 1px solid var(--primary);
+    border-radius: 10px;
+
+    background: transparent;
+    color: var(--primary);
+
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.school-doc-footer button:hover {
+    background: var(--primary);
+    color: #fff;
+}
+
+/* =========================================
+   RESPONSIVE LAYOUT
+========================================= */
+
+@media (max-width: 760px) {
+
+    .school-doc-overlay {
+        padding: 10px;
+    }
+
+    .school-doc-window {
+        width: 100%;
+        height: 94vh;
+        max-height: none;
+        border-radius: 22px;
+    }
+
+    .school-doc-header {
+        padding: 24px 20px;
+        gap: 12px;
+    }
+
+    .school-doc-body,
+    .school-doc-content {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .school-doc-item {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+        padding: 16px;
+        border-radius: 18px;
+    }
+
+    .school-doc-image {
+        height: 250px;
+    }
+
+    .school-doc-footer {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .source-document-toggle {
+        gap: 12px;
+        padding: 13px;
+    }
+
+    .source-document-icon {
+        width: 65px;
+        min-width: 65px;
+        height: 65px;
+        font-size: 27px;
+    }
+
+    .source-document-info h3 {
+        font-size: 14px;
+    }
+
+    .source-document-info p {
+        font-size: 11px;
+    }
+
+    .source-document-content {
+        padding: 0 12px 15px;
+    }
+
+    .source-document-content pre {
+        font-size: 11px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .school-doc-overlay {
+        padding: 6px;
+    }
+
+    .school-doc-window {
+        height: 96vh;
+        border-radius: 16px;
+    }
+
+    .school-doc-header {
+        padding: 20px 14px;
+    }
+
+    .school-doc-header h2 {
+        font-size: 25px;
+    }
+
+    .school-doc-header > div > p:not(.school-doc-eyebrow) {
+        font-size: 13px;
+    }
+
+    .school-doc-close {
+        width: 36px;
+        height: 36px;
+        font-size: 23px;
+    }
+
+    .school-doc-body,
+    .school-doc-content {
+        padding: 12px;
+        gap: 14px;
+    }
+
+    .school-doc-item {
+        padding: 12px;
+        gap: 15px;
+    }
+
+    .school-doc-image {
+        height: 190px;
+    }
+
+    .school-doc-info h3 {
+        font-size: 19px;
+    }
+
+    .school-doc-info > p:not(.school-doc-category),
+    .school-doc-details p {
+        font-size: 13px;
+    }
+
+    .school-doc-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 18px;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+    .school-doc-window,
+    .school-doc-item,
+    .school-doc-image img,
+    .school-doc-close,
+    .source-document-card,
+    .source-document-arrow {
+        animation: none;
+        transition: none;
+    }
+}
+
+/* =========================================
+   RAVENSTECH — HORIZONTAL MEMBER CARDS
+========================================= */
+
+.member-directory {
+    width: 100%;
+    margin-top: 55px;
+}
+
+.member-directory-heading {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.member-directory-heading h3 {
+    color: var(--text);
+    font-size: 1.7rem;
+    margin-bottom: 8px;
+}
+
+.member-directory-heading p {
+    color: var(--text-light);
+    font-size: 0.9rem;
+}
+
+.member-card-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    padding: 15px 5px 25px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.member-card-trigger {
+    position: relative;
+    display: flex;
+    flex: 1 0 190px;
+    min-width: 190px;
+    max-width: 240px;
+    flex-direction: column;
+    align-items: center;
+    padding: 25px 18px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--card);
+    color: var(--text);
+    font: inherit;
+    text-align: center;
+    cursor: pointer;
+    scroll-snap-align: start;
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease,
+        background 0.35s ease;
+}
+
+.member-card-trigger:hover {
+    transform: translateY(-9px);
+    border-color: var(--primary);
+
+    box-shadow:
+        0 15px 35px rgba(230, 57, 70, 0.13),
+        0 0 15px rgba(230, 57, 70, 0.06);
+}
+
+.member-card-trigger:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+}
+
+.member-card-image {
+    width: 105px;
+    height: 105px;
+    margin-bottom: 17px;
+    overflow: hidden;
+    border: 3px solid var(--primary);
+    border-radius: 50%;
+    background: var(--surface);
+    transition: transform 0.35s ease;
+}
+
+.member-card-trigger:hover .member-card-image {
+    transform: scale(1.07);
+}
+
+.member-card-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.member-card-badge {
+    margin-bottom: 9px;
+    padding: 5px 12px;
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    background: var(--surface);
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.member-card-trigger h4 {
+    margin-bottom: 6px;
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+.member-card-trigger p {
+    color: var(--text-light);
+    font-size: 0.82rem;
+}
+
+.member-card-hint {
+    margin-top: 17px;
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* =========================================
+   MEMBER INFORMATION POPUP
+========================================= */
+
+.member-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(8px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.member-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.member-modal[hidden] {
+    display: none;
+}
+
+.member-modal-dialog {
+    position: relative;
+    width: 100%;
+    max-width: 750px;
+    max-height: 88vh;
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+
+    padding: 30px;
+    border: 1px solid var(--border);
+    border-radius: 25px;
+    background: var(--surface);
+
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35);
+
+    transform: translateY(35px) scale(0.96);
+    transition: transform 0.35s ease;
+}
+
+.member-modal.is-open .member-modal-dialog {
+    transform: translateY(0) scale(1);
+}
+
+.member-modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding-bottom: 22px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.member-modal-header h2 {
+    color: var(--text);
+    font-size: 1.4rem;
+    line-height: 1.5;
+}
+
+.member-modal-header p {
+    margin-top: 5px;
+    color: var(--text-light);
+    font-size: 0.85rem;
+}
+
+.member-modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--card);
+    color: var(--text);
+
+    font-size: 1.5rem;
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s ease;
+}
+
+.member-modal-close:hover {
+    background: var(--primary);
+    color: white;
+    transform: rotate(90deg);
+}
+
+.member-modal-body {
+    display: grid;
+    gap: 15px;
+}
+
+/* =========================================
+   POPUP INFORMATION ACCORDIONS
+========================================= */
+
+.member-modal .member-detail-section {
+    position: relative;
+    margin: 0;
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    background: var(--card);
+
+    transition:
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.member-modal .member-detail-section:hover,
+.member-modal .member-detail-section[open] {
+    border-color: var(--primary);
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.09);
+}
+
+.member-modal .member-detail-section > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 19px 22px;
+
+    color: var(--text);
+    font-weight: 700;
+    font-size: 0.95rem;
+
+    cursor: pointer;
+    list-style: none;
+}
+
+.member-modal .member-detail-section > summary::-webkit-details-marker {
+    display: none;
+}
+
+.member-modal .member-detail-section > summary::after {
+    content: "+";
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+    width: 30px;
+    height: 30px;
+
+    border-radius: 50%;
+    background: var(--surface);
+    color: var(--primary);
+
+    font-size: 1.3rem;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+.member-modal .member-detail-section[open] > summary::after {
+    content: "−";
+    background: var(--primary);
+    color: white;
+}
+
+.member-modal .member-detail-section > .education-extra {
+    margin: 0 18px 18px;
+    padding: 18px;
+
+    border-left: 3px solid var(--primary);
+    border-radius: 0 12px 12px 0;
+
+    background: var(--surface);
+    color: var(--text-light);
+
+    font-size: 0.88rem;
+    line-height: 1.8;
+
+    animation: memberInformationReveal 0.3s ease;
+}
+
+.member-modal .member-detail-section .education-extra p {
+    margin-bottom: 10px;
+}
+
+.member-modal .member-detail-section .education-extra strong {
+    color: var(--text);
+}
+
+.member-modal .member-detail-section .education-extra a {
+    color: var(--primary);
+    font-weight: 600;
+}
+
+@keyframes memberInformationReveal {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   MEMBER POPUP RESPONSIVENESS
+========================================= */
+
+@media (max-width: 600px) {
+    .member-modal {
+        padding: 12px;
+    }
+
+    .member-modal-dialog {
+        max-height: 92vh;
+        padding: 20px;
+        border-radius: 18px;
+    }
+
+    .member-modal-header h2 {
+        font-size: 1.1rem;
+    }
+
+    .member-card-trigger {
+        flex-basis: 175px;
+        min-width: 175px;
+    }
+}
+
+/* Reduced motion support */
+
+@media (prefers-reduced-motion: reduce) {
+    .member-card-trigger,
+    .member-card-image,
+    .member-modal,
+    .member-modal-dialog,
+    .member-modal-close {
+        transition: none;
+    }
+
+    .member-modal .member-detail-section > .education-extra {
+        animation: none;
+    }
+}
+
+/* =========================================
+   CLOSE BUTTON EFFECT
+========================================= */
+
+.member-modal-close {
+    transition:
+        transform 0.35s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.member-modal-close:hover {
+    transform: rotate(180deg) scale(1.08);
+    box-shadow: 0 0 18px rgba(230, 57, 70, 0.3);
+}
+
+/* =========================================
+   MOBILE AND ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    .member-card-trigger,
+    .member-card-trigger::before,
+    .member-card-image,
+    .member-card-image::after,
+    .member-modal-dialog,
+    .member-modal-dialog::before,
+    .member-modal-header::after,
+    .member-ripple,
+    .member-card-trigger h4,
+    .member-card-hint {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .member-card-trigger {
+        opacity: 1;
+    }
+}
+
+/* =========================================
+   PROFILE INFORMATION CARDS
+========================================= */
+
+.team-profile-content {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.profile-information-card {
+    padding: 25px;
+    border-radius: 17px;
+    background: var(--bg-color, #f7f7f7);
+    border: 1px solid rgba(150, 150, 150, 0.15);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.profile-information-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+.profile-card-heading {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.profile-card-heading span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+
+    background: #e63946;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.profile-card-heading h3 {
+    font-size: 17px;
+}
+
+.profile-information-card > p {
+    font-size: 14px;
+    line-height: 1.8;
+    opacity: 0.8;
+}
+
+
+/* EDUCATION */
+
+.education-item {
+    padding: 15px;
+    margin-bottom: 12px;
+    border-left: 3px solid #e63946;
+    border-radius: 5px 12px 12px 5px;
+    background: var(--card-bg, #ffffff);
+}
+
+.education-item:last-child {
+    margin-bottom: 0;
+}
+
+.education-item h4 {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.education-item .education-year {
+    font-size: 11px;
+    color: #e63946;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.education-item p {
+    font-size: 12px;
+    line-height: 1.7;
+    opacity: 0.75;
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode .team-section {
+    background: #111111;
+    color: #f5f5f5;
+}
+
+body.dark-mode .team-member-card,
+body.dark-mode .team-profile-panel {
+    background: #1a1a1a;
+    color: #f5f5f5;
+}
+
+body.dark-mode .profile-information-card {
+    background: #151515;
+}
+
+body.dark-mode .education-item {
+    background: #222222;
+}
+
+body.dark-mode .team-profile-panel {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+body.dark-mode .team-member-card {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================
+   REDUCED MOTION ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .team-section *,
+    .team-section *::before,
+    .team-section *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+}
+/* =========================================
+   RAVENSTECH TEAM SHOWCASE FIX
+========================================= */
+
+#team {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 20px;
+    text-align: center;
+    overflow: hidden;
+}
+
+#team .team-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+#team .team-heading {
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+#team .team-showcase {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#team .team-card-stack {
+    position: relative;
+    width: 320px;
+    height: 420px;
+    margin: 0 auto 30px;
+    perspective: 1200px;
+}
+
+#team .team-member-card {
+    position: absolute;
+    inset: 0;
+    cursor: pointer;
+    user-select: none;
+}
+
+#team .team-member-card.active {
+    z-index: 10;
+    opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#team .team-member-card.previous,
+#team .team-member-card.next {
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+#team .team-member-card:hover {
+    border-color: #e63946;
+}
+
+#team .team-navigation {
+    position: relative;
+    z-index: 20;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+}
+
+#team .team-profile-panel {
+    width: 100%;
+    max-width: 1000px;
+    margin: 70px auto 0;
+    text-align: left;
+}
+
+@media (max-width: 600px) {
+    #team .team-card-stack {
+        width: 270px;
+        height: 380px;
+    }
+}
+
+/* =========================================
+   MEMBER MODAL - DIRECT INFORMATION DISPLAY
+========================================= */
+
+/* Hide Personal Information, Education Background,
+   and Skills and Interests clickable headings */
+.member-modal-body .member-detail-section > summary {
+    display: none !important;
+}
+
+/* Display all information sections */
+.member-modal-body .member-detail-section {
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 0 20px 0 !important;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+/* Keep the actual information visible */
+.member-modal-body .member-detail-section > .education-extra {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    padding: 10px 15px !important;
+    margin: 0 !important;
+}
+
+/* =========================================
+   RAVENSTECH MEMBER POPUP - VISUAL POLISH
+========================================= */
+
+/* 2. INFORMATION PANEL DESIGN */
+
+.member-modal .member-detail-section > .education-extra {
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.035),
+        rgba(255, 75, 175, 0.045)
+    ) !important;
+
+    border: 1px solid rgba(239, 100, 180, 0.22) !important;
+    border-left: 3px solid #ff4db8 !important;
+
+    border-radius: 12px !important;
+
+    padding: 20px 18px !important;
+    margin: 0 0 22px !important;
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        transform 0.3s ease;
+}
+
+/* Subtle hover effect */
+.member-modal .member-detail-section > .education-extra:hover {
+    border-color: rgba(255, 77, 184, 0.65) !important;
+
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.055),
+        rgba(255, 75, 175, 0.08)
+    ) !important;
+
+    transform: translateY(-2px);
+}
+
+/* 4. SMOOTHER SCROLLING */
+
+.member-modal-dialog {
+    scroll-behavior: smooth;
+    scroll-padding-top: 15px;
+}
+
+/* =========================================
+   REMOVE UNWANTED POPUP DECORATIONS
+========================================= */
+
+/* Hide the right-side scrollbar */
+.member-modal-dialog {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.member-modal-dialog::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Remove the pink circle and timeline decoration */
+.member-modal .member-detail-section .education-extra::before,
+.member-modal .member-detail-section .education-extra::after,
+.member-modal .member-detail-section .education-extra .education-timeline::before,
+.member-modal .member-detail-section .education-extra .education-timeline::after {
+    display: none !important;
+    content: none !important;
+}
+
+/* Remove decorative timeline lines and markers */
+.member-modal .member-detail-section .education-extra .education-item::before,
+.member-modal .member-detail-section .education-extra .education-item::after {
+    display: none !important;
+    content: none !important;
+}
+/* REMOVE TIMELINE CIRCLE AND PINK VERTICAL BAR
+   INSIDE MEMBER PROFILE POPUP
+*/
+
+.member-modal .education-item::before,
+.member-modal .education-item::after,
+.member-modal .member-detail-section::before,
+.member-modal .member-detail-section::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Keep the popup scrollbar hidden */
+.member-modal-dialog {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.member-modal-dialog::-webkit-scrollbar {
+    display: none !important;
+}
+
+/* =========================================
+   MODERN RAVENSTECH LOADING ANIMATION
+========================================= */
+
+.page-loader {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #100d14;
+    color: #fff;
+
+    opacity: 1;
+    visibility: visible;
+
+    transition:
+        opacity 0.75s cubic-bezier(.22, 1, .36, 1),
+        visibility 0.75s ease;
+}
+
+.page-loader.loader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Loader content entrance */
+.loader-content {
+    width: min(340px, 85%);
+    text-align: center;
+
+    animation: loaderContentEnter 0.9s
+        cubic-bezier(.16, 1, .3, 1) both;
+}
+
+/* Logo circle */
+.loader-logo {
+    position: relative;
+
+    width: 94px;
+    height: 94px;
+
+    margin: 0 auto 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(232, 50, 133, 0.08);
+
+    box-shadow:
+        0 0 35px rgba(232, 50, 133, 0.12),
+        inset 0 0 20px rgba(232, 50, 133, 0.06);
+
+    animation: logoFloat 2.8s ease-in-out infinite;
+}
+
+/* Rotating glowing ring */
+.loader-ring {
+    position: absolute;
+    inset: -5px;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 210deg,
+        #e83285 270deg,
+        #ff9bc9 320deg,
+        transparent 360deg
+    );
+
+    animation: ringRotate 1.8s linear infinite;
+}
+
+/* Create the hollow center */
+.loader-ring::before {
+    content: "";
+    position: absolute;
+    inset: 3px;
+
+    border-radius: inherit;
+    background: #100d14;
+}
+
+/* Logo letter */
+.loader-logo span {
+    position: relative;
+    z-index: 1;
+
+    font-size: 43px;
+    font-weight: 800;
+    color: #ff70b5;
+
+    text-shadow: 0 0 24px rgba(255, 112, 181, 0.4);
+
+    animation: logoReveal 0.8s
+        cubic-bezier(.16, 1, .3, 1) both;
+}
+
+/* Brand name */
+.loader-title {
+    margin: 0;
+
+    font-size: clamp(27px, 5vw, 34px);
+    font-weight: 800;
+    letter-spacing: -1px;
+
+    opacity: 0;
+    animation: textReveal 0.7s ease 0.2s forwards;
+}
+
+.loader-title span {
+    color: #ff70b5;
+}
+
+/* Tagline */
+.loader-subtitle {
+    margin: 10px 0 28px;
+
+    color: #b9aab8;
+    font-size: 10px;
+    letter-spacing: 2.5px;
+    line-height: 1.8;
+
+    opacity: 0;
+    animation: textReveal 0.7s ease 0.35s forwards;
+}
+
+/* Progress bar background */
+.loader-bar {
+    width: 100%;
+    height: 3px;
+
+    overflow: hidden;
+    border-radius: 20px;
+
+    background: #30232f;
+
+    opacity: 0;
+    animation: textReveal 0.5s ease 0.45s forwards;
+}
+
+/* Moving progress highlight */
+.loader-progress {
+    width: 40%;
+    height: 100%;
+
+    border-radius: inherit;
+
+    background: linear-gradient(
+        90deg,
+        #e83285,
+        #ffb0d4,
+        #e83285
+    );
+
+    box-shadow: 0 0 12px rgba(232, 50, 133, 0.65);
+
+    animation: progressMove 1.5s
+        cubic-bezier(.65, 0, .35, 1) infinite;
+}
+
+/* Status text */
+.loader-status {
+    margin-top: 14px;
+
+    color: #9b8998;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+
+    opacity: 0;
+    animation: textReveal 0.6s ease 0.5s forwards;
+}
+
+/* =========================================
+   RAVENSTECH PAGE SWITCHING ANIMATION
+========================================= */
+
+/* Completely hide inactive pages. */
+.page-view-hidden {
+    display: none !important;
+}
+
+/* Animate the selected page. */
+.page-view-active {
+    animation: ravenPageFade 0.45s ease both;
+}
+
+/* Fade-in animation */
+@keyframes ravenPageFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+/* Respect reduced-motion settings. */
+@media (prefers-reduced-motion: reduce) {
+
+    .page-view-active {
+        animation: none;
+    }
+
+}
+
+/* =========================================
+   ABOUT US — SPACING REFINEMENT
+========================================= */
+
+/* Bring the About section heading closer to the navbar */
+.about {
+    padding: 42px 0 60px;
+}
+
+/* Reduce the gap between the heading and content */
+.about .section-heading {
+    margin: 0 auto 30px;
+}
+
+/* Remove unnecessary heading margins */
+.about .section-heading h2 {
+    margin: 0;
+}
+
+/* Balance the profile card and introduction */
+.about-content {
+    align-items: center;
+    gap: 36px;
+}
+
+/* Slightly refine the profile card spacing */
+.about-card {
+    padding: 34px 26px;
+}
+
+/* Improve paragraph spacing */
+.about-text > h3 {
+    margin-bottom: 16px;
+}
+
+.about-text > p {
+    margin-bottom: 12px;
+    line-height: 1.75;
+}
+
+/* Mobile spacing */
+@media (max-width: 768px) {
+
+    .about {
+        padding: 38px 0 45px;
+    }
+
+    .about .section-heading {
+        margin-bottom: 25px;
+    }
+
+    .about-content {
+        gap: 25px;
+    }
+
+    .about-card {
+        padding: 30px 22px;
+    }
+
+}
+
+/* =========================================
+   RAVENSTECH — CLEAN CUSTOM SCROLLBAR
+========================================= */
+
+/* Completely remove the browser's scrollbar */
+html {
+    scrollbar-width: none !important;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+}
+
+/* Custom scrollbar indicator */
+#ravenScrollbar {
+    position: fixed;
+    top: 0;
+    right: 3px;
+
+    width: 5px;
+    height: 40px;
+
+    background: var(--primary);
+    border-radius: 20px;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    z-index: 999999;
+
+    transition:
+        opacity 2.5s ease,
+        visibility 0s linear 2.5s;
+}
+
+/* Show indicator */
+#ravenScrollbar.visible {
+    opacity: 0.9;
+    visibility: visible;
+
+    transition:
+        opacity 0.4s ease,
+        visibility 0s;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    #ravenScrollbar {
+        transition: none;
+    }
+}
+
+/* ==================================================
+   RAVENSTECH — MIDNIGHT ROSE THEME
+   Light and Dark Mode
+   Preserves Original Logo Animations
+================================================== */
+
+
+/* ==================================================
+   1. LIGHT MODE
+================================================== */
+
+:root {
+    --primary: #D96D98;
+    --primary-dark: #BD527D;
+    --accent: #EFA3C0;
+
+    --bg: #FFFFFF;
+    --surface: #F7F7F9;
+    --card: #FFFFFF;
+
+    --text: #242329;
+    --text-muted: #77747D;
+
+    --border: #E8E6EB;
+
+    --shadow: 0 8px 30px rgba(35, 30, 40, 0.07);
+
+    --radius: 18px;
+    --transition: 0.3s ease;
+}
+
+
+/* ==================================================
+   2. DARK MODE
+================================================== */
+
+body.dark-mode {
+    --primary: #F0A6C1;
+    --primary-dark: #D97FA2;
+    --accent: #F5BED2;
+
+    --bg: #111114;
+    --surface: #1B1B22;
+    --card: #222129;
+
+    --text: #F7F4F6;
+    --text-muted: #B5B0BB;
+
+    --border: #37343E;
+
+    --shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ==================================================
+   3. GENERAL WEBSITE APPEARANCE
+================================================== */
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+section {
+    color: var(--text);
+
+    transition:
+        background-color 0.4s ease,
+        color 0.4s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    color: var(--text);
+
+    transition: color 0.3s ease;
+}
+
+p {
+    color: var(--text-muted);
+}
+
+
+/* ==================================================
+   4. NAVIGATION
+================================================== */
+
+header,
+.navbar,
+nav {
+    transition:
+        background-color 0.4s ease,
+        border-color 0.4s ease;
+}
+
+.nav-link {
+    color: var(--text-muted);
+
+    transition:
+        color 0.3s ease,
+        background-color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+
+/* ==================================================
+   5. HEADINGS AND ACCENTS
+================================================== */
+
+.highlight,
+.section-heading span {
+    color: var(--primary);
+}
+
+.section-heading h2 {
+    letter-spacing: -0.8px;
+}
+
+
+/* ==================================================
+   6. CONTENT CARDS
+   Does not modify the hero profile card.
+================================================== */
+
+.about-card,
+.team-card,
+.project-card,
+.education-card {
+    background-color: var(--card);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+
+    box-shadow: var(--shadow);
+
+    transition:
+        background-color 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.about-card:hover,
+.team-card:hover,
+.project-card:hover {
+    transform: translateY(-6px);
+
+    border-color: var(--accent);
+
+    box-shadow:
+        0 15px 35px rgba(217, 109, 152, 0.12);
+}
+
+
+/* ==================================================
+   7. BUTTONS
+================================================== */
+
+button,
+.btn,
+.primary-btn {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+button:hover,
+.btn:hover,
+.primary-btn:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ==================================================
+   8. LINKS
+================================================== */
+
+a {
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+
+/* ==================================================
+   9. INPUTS AND FORMS
+================================================== */
+
+input,
+textarea,
+select {
+    background-color: var(--surface);
+    color: var(--text);
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+
+    border-color: var(--primary);
+
+    box-shadow:
+        0 0 0 3px rgba(217, 109, 152, 0.13);
+}
+
+
+/* ==================================================
+   10. FOOTER
+================================================== */
+
+footer {
+    background-color: var(--surface);
+    color: var(--text);
+
+    border-top: 1px solid var(--border);
+}
+
+footer p,
+footer span {
+    color: var(--text-muted);
+}
+
+/* ==================================================
+   12. MOBILE RESPONSIVENESS
+================================================== */
+
+@media (max-width: 768px) {
+
+    .about-card,
+    .team-card,
+    .project-card,
+    .education-card {
+        border-radius: 16px;
+    }
+
+    .about-card:hover,
+    .team-card:hover,
+    .project-card:hover {
+        transform: translateY(-3px);
+    }
+
+}
+
+/* ==================================================
+   X button for document popup
+================================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    body,
+    header,
+    nav,
+    section,
+    footer,
+    .about-card,
+    .team-card,
+    .project-card,
+    .education-card {
+        transition-duration: 0.01ms;
+    }
+
+}
+
+/* DOCUMENT POPUP CLOSE BUTTON — MATCH ABOUT US */
+.school-doc-close {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+    border: none;
+    border-radius: 12px;
+
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid rgba(126, 126, 126, 0.15);
+
+    font-size: 22px;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.35s ease,
+        background 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+/* Rotate 180 degrees on hover */
+.school-doc-close:hover {
+    transform: rotate(180deg) scale(1.08);
+    box-shadow: 0 0 18px rgba(230, 57, 70, 0.3);
+}
+
+/* DARK MODE — DOCUMENT CLOSE BUTTON */
+
+body.dark-mode .school-doc-close {
+    width: 42px;
+    height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #1c1c23;
+    color: #ffffff;
+
+    border: 1px solid #393943;
+    border-radius: 12px;
+
+    font-size: 22px;
+    cursor: pointer;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.35s ease,
+        box-shadow 0.3s ease;
+}
+
+/* PINK ON HOVER */
+body.dark-mode .school-doc-close:hover {
+    background: #df6b9b;
+    border-color: #df6b9b;
+    color: #ffffff;
+
+    transform: rotate(180deg) scale(1.08);
+    box-shadow: 0 0 18px rgba(230, 57, 70, 0.3);
+}
+
+/* PINK WHEN CLICKED */
+body.dark-mode .school-doc-close:active {
+    background: #df6b9b;
+    border-color: #df6b9b;
+    color: #ffffff;
+}
+
+/* KEYBOARD FOCUS */
+body.dark-mode .school-doc-close:focus-visible {
+    outline: 2px solid #df6b9b;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   LIGHT MODE - DEEP PINK THEME
+========================================= */
+
+body.light-mode {
+    --primary: #C2185B;
+    --primary-dark: #9D174D;
+    --accent: #D63384;
+}
+
+/* Headings and highlighted text */
+body.light-mode .section-title,
+body.light-mode .highlight,
+body.light-mode .logo span {
+    color: #C2185B;
+}
+
+/* Buttons */
+body.light-mode button,
+body.light-mode .btn,
+body.light-mode .primary-btn {
+    background: #C2185B;
+    color: #ffffff;
+    border-color: #C2185B;
+}
+
+body.light-mode button:hover,
+body.light-mode .btn:hover,
+body.light-mode .primary-btn:hover {
+    background: #9D174D;
+    border-color: #9D174D;
+}
+
+/* Cards and box highlights */
+body.light-mode .project-card,
+body.light-mode .team-card,
+body.light-mode .info-card,
+body.light-mode .profile-card {
+    border-color: rgba(194, 24, 91, 0.35);
+}
+
+/* Card hover */
+body.light-mode .project-card:hover,
+body.light-mode .team-card:hover,
+body.light-mode .info-card:hover,
+body.light-mode .profile-card:hover {
+    border-color: #C2185B;
+    box-shadow: 0 8px 22px rgba(194, 24, 91, 0.16);
+}
+
+/* Links */
+body.light-mode a:hover {
+    color: #9D174D;
+}
+
+/* Icons */
+body.light-mode .icon,
+body.light-mode i {
+    color: #C2185B;
+}
+
+/* =========================================
+   LIGHT MODE - PURE WHITE BACKGROUND
+========================================= */
+
+body.light-mode {
+    background: #ffffff !important;
+}
+
+/* All main sections */
+body.light-mode section,
+body.light-mode main,
+body.light-mode .hero,
+body.light-mode .about,
+body.light-mode .projects,
+body.light-mode .team,
+body.light-mode .contact {
+    background-color: #ffffff !important;
+}
+
+/* Keep darker pink accents */
+body.light-mode {
+    --primary: #C2185B;
+    --primary-dark: #9D174D;
+    --accent: #D63384;
+}
+
+/* =========================================
+   RAVENSTECH DOCUMENTATION
+   REMOVE VISIBLE SCROLLBARS
+   ALL THREE PROJECT WINDOWS
+========================================= */
+
+/* Hide the vertical scrollbar */
+.school-doc-window {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.school-doc-window::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* Remove the horizontal pink progress line */
+.school-doc-progress {
+    display: none !important;
+}
+
+/* Hide horizontal scrollbar in source code panels */
+.source-document-content pre {
+    scrollbar-width: none !important;
+    -ms-overflow-style: none !important;
+}
+
+.source-document-content pre::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* ==================================================
+   RAVENSTECH — IMPROVED MOBILE RESPONSIVENESS
+   Home, About Us and Section Spacing
+   Add this at the VERY END of style.css
+================================================== */
+
+
+/* =========================================
+   TABLET AND MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* GENERAL SECTION SPACING */
+
+    .container {
+        width: 90%;
+    }
+
+    .section {
+        padding: 38px 0 !important;
+    }
+
+    .section-heading {
+        margin-bottom: 28px !important;
+    }
+
+
+    /* =====================================
+       HOME / HERO SECTION
+    ===================================== */
+
+    .hero {
+        min-height: auto !important;
+        padding: 38px 0 45px !important;
+    }
+
+    .hero-container {
+        width: 90%;
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .hero-content {
+        order: 1;
+        width: 100%;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.4rem, 9vw, 3.5rem);
+        line-height: 1.15;
+        margin: 8px 0 12px;
+    }
+
+    .hero-content h2 {
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        line-height: 1.5;
+        margin-bottom: 14px;
+    }
+
+    .hero-subtitle {
+        font-size: 0.78rem;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.75;
+        margin: 0 auto 20px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .hero-image {
+        order: 2;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    /* FIX THE EXCESSIVE 1000PX PADDING */
+
+    .hero-image .profile-card {
+        width: 100%;
+        max-width: 320px;
+        min-height: 275px;
+
+        margin: 45px auto 0 !important;
+
+        padding: 100px 20px 28px !important;
+    }
+
+    .hero-image .profile-card .profile-icon {
+        width: 135px;
+        height: 135px;
+        top: -55px;
+    }
+
+    .hero-image .profile-card h3 {
+        font-size: 1.3rem;
+        margin-top: 10px;
+    }
+
+    .hero-image .profile-card p {
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+
+    .social-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+
+    /* =====================================
+       ABOUT US SECTION
+    ===================================== */
+
+    .about {
+        padding: 40px 0 !important;
+    }
+
+    .about .section-heading {
+        margin-bottom: 28px !important;
+    }
+
+    .about .section-heading h2 {
+        font-size: clamp(2rem, 8vw, 2.8rem);
+        letter-spacing: -0.8px;
+        line-height: 1.2;
+    }
+
+    .about .section-subtitle {
+        font-size: 0.72rem;
+        padding: 6px 13px;
+    }
+
+    /* Stack the profile and introduction */
+
+    .about-content {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px !important;
+        align-items: start;
+    }
+
+    .about-image {
+        order: 1;
+        width: 100%;
+        min-width: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .about-text {
+        order: 2;
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Profile information card */
+
+    .about-card {
+        width: 100%;
+        max-width: 340px;
+        margin: 0 auto;
+        padding: 28px 22px;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .about-card h3 {
+        font-size: 1.35rem;
+    }
+
+    .about-card > p {
+        font-size: 0.88rem;
+        line-height: 1.75;
+    }
+
+    .about-status {
+        margin-top: 18px;
+        font-size: 0.75rem;
+        flex-wrap: wrap;
+    }
+
+    /* Introduction text */
+
+    .about-text > h3 {
+        font-size: 1.45rem;
+        line-height: 1.4;
+        margin-bottom: 14px;
+    }
+
+    .about-text > p {
+        font-size: 0.88rem;
+        line-height: 1.8;
+        margin-bottom: 13px;
+    }
+
+    /* Personal information cards */
+
+    .about-info {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 20px;
+    }
+
+    .info-item {
+        padding: 14px 12px;
+        border-radius: 12px;
+        min-width: 0;
+    }
+
+    .info-item strong {
+        font-size: 0.68rem;
+        letter-spacing: 0.7px;
+    }
+
+    .info-item span {
+        font-size: 0.82rem;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
+    }
+
+
+    /* =====================================
+       EDUCATION SECTION SPACING
+    ===================================== */
+
+    .education-section {
+        padding-top: 35px !important;
+        padding-bottom: 40px !important;
+    }
+
+    .about-education {
+        margin-top: 24px;
+        padding-top: 20px;
+    }
+
+
+    /* =====================================
+       CONTACT SECTION
+    ===================================== */
+
+    .contact-container {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 25px;
+    }
+
+    .contact-form {
+        padding: 22px;
+    }
+
+
+    /* =====================================
+       FOOTER
+    ===================================== */
+
+    .footer {
+        padding: 30px 0 18px;
+    }
+
+    .footer-bottom {
+        gap: 8px;
+    }
+
+}
+
+
+/* =========================================
+   SMALL PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    .container {
+        width: 91%;
+    }
+
+    /* Home */
+
+    .hero {
+        padding: 30px 0 38px !important;
+    }
+
+    .hero-container {
+        gap: 12px;
+    }
+
+    .hero-content h1 {
+        font-size: clamp(2.2rem, 10vw, 2.8rem);
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-image .profile-card {
+        max-width: 290px;
+        min-height: 255px;
+        padding: 95px 18px 25px !important;
+    }
+
+    /* About */
+
+    .about .section-heading h2 {
+        font-size: 2.1rem;
+    }
+
+    .about-content {
+        gap: 22px !important;
+    }
+
+    .about-card {
+        padding: 25px 18px;
+    }
+
+    .about-text > h3 {
+        font-size: 1.3rem;
+    }
+
+    .about-info {
+        gap: 9px;
+    }
+
+    .info-item {
+        padding: 12px 10px;
+    }
+
+    .info-item span {
+        font-size: 0.78rem;
+    }
+
+    /* Education */
+
+    .education-section {
+        padding-top: 28px !important;
+        padding-bottom: 32px !important;
+    }
+
+    /* Contact */
+
+    .contact-form {
+        padding: 18px;
+    }
+
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .about-info {
+        grid-template-columns: 1fr;
+    }
+
+    .about-card {
+        padding: 22px 16px;
+    }
+
+    .hero-image .profile-card {
+        max-width: 270px;
+    }
+
+}
+
+
+/* =========================================
+   PREVENT UNWANTED HORIZONTAL OVERFLOW
+========================================= */
+
+@media (max-width: 768px) {
+
+    .hero-container,
+    .about-content,
+    .about-text,
+    .about-info,
+    .contact-container {
+        min-width: 0;
+        max-width: 100%;
+    }
+
+    .about-info > *,
+    .info-item > * {
+        min-width: 0;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+}
+
+/* =========================================
+   HOME PAGE — FINAL MOBILE LOGO POSITION
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* Move the entire logo section downward */
+    .hero-image {
+        width: 100%;
+        margin-top: 85px !important;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Remove unnecessary card spacing */
+    .hero-image .profile-card {
+        width: 100%;
+        max-width: 320px;
+
+        min-height: 0 !important;
+        height: auto !important;
+
+        margin: 0 auto !important;
+        padding: 0 !important;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Center and slightly enlarge the logo */
+    .hero-image .profile-card .profile-icon {
+        position: relative !important;
+
+        top: auto !important;
+        left: auto !important;
+
+        transform: none !important;
+
+        width: 210px !important;
+        height: 210px !important;
+
+        margin: 0 auto !important;
+        padding: 6px !important;
+
+        flex-shrink: 0;
+    }
+
+    /* Preserve the original image */
+    .hero-image .profile-card .profile-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 50%;
+    }
+
+    /* Keep the orbit centered */
+    .hero-image .profile-card .profile-icon::before {
+        inset: -15px !important;
+    }
+
+    /* Position the background glow */
+    .hero-image .profile-card::before {
+        top: 50% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+
+        width: 230px !important;
+        height: 230px !important;
+    }
+
+}
+
+/* Smaller phones */
+@media (max-width: 400px) {
+    .hero-image {
+        margin-top: 70px !important;
+    }
+
+    .hero-image .profile-card .profile-icon {
+        width: 195px !important;
+        height: 195px !important;
+    }
+}
+/* =========================================
+   RAVENSSNAKE CLOSE BUTTON
+   MATCH DOCUMENT CLOSE BUTTON
+========================================= */
+
+#snakeClose {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px;
+    min-height: 42px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 !important;
+
+    background: #1c1c23 !important;
+    color: #ffffff !important;
+
+    border: 1px solid #393943 !important;
+    border-radius: 12px !important;
+
+    font-size: 22px !important;
+    font-weight: 400;
+    line-height: 1;
+
+    cursor: pointer;
+
+    /* RESTORE ORIGINAL HOVER ANIMATION */
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.35s ease,
+        box-shadow 0.3s ease;
+}
+
+/* ROTATE AND ENLARGE ON HOVER */
+#snakeClose:hover {
+    background: #df6b9b !important;
+    border-color: #df6b9b !important;
+    color: #ffffff !important;
+
+    transform: rotate(180deg) scale(1.08);
+
+    box-shadow: 0 0 18px rgba(230, 57, 70, 0.3);
+}
+
+/* CLICK ANIMATION */
+#snakeClose:active {
+    transform: rotate(180deg) scale(0.95);
+}
+
+/* KEYBOARD FOCUS */
+#snakeClose:focus-visible {
+    outline: 2px solid #df6b9b;
+    outline-offset: 3px;
+}
+
+/* =========================================
+   SNAKE ONLINE CONNECTION STATUS
+========================================= */
+
+#snakeOnlineStatus {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    width: fit-content;
+    margin: 6px auto 12px;
+    padding: 5px 10px;
+
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.4;
+
+    color: #16a36a;
+    background: rgba(22, 163, 106, 0.08);
+
+    border: 1px solid rgba(22, 163, 106, 0.18);
+    border-radius: 20px;
+}
+
+/* Small connection indicator */
+#snakeOnlineStatus::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+
+    background: #16a36a;
+    border-radius: 50%;
+}
+
+/* Dark mode */
+body.dark-mode #snakeOnlineStatus {
+    color: #72d6a5;
+    background: rgba(114, 214, 165, 0.08);
+    border-color: rgba(114, 214, 165, 0.18);
+}
+
+body.dark-mode #snakeOnlineStatus::before {
+    background: #72d6a5;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    #snakeOnlineStatus {
+        font-size: 10px;
+        padding: 4px 9px;
+    }
+}
+
+/* =========================================
+   SNAKE REMOVE PLAYER BUTTON VISIBILITY
+========================================= */
+
+#snakeRemovePlayer[hidden] {
+    display: none !important;
+}
+
+#snakeRemovePlayer:not([hidden]) {
+    display: inline-flex;
+}
