@@ -1174,70 +1174,72 @@ if (currentYear) {
     });
 
 
-    // =====================================
-    // 12. REMOVE OWN PLAYER
-    // =====================================
+// =====================================
+// 12. REMOVE OWN PLAYER
+// =====================================
 
-    if (removeButton) {
+if (removeButton) {
 
-        removeButton.addEventListener("click", async function () {
+    removeButton.addEventListener("click", async function () {
 
-            const player = players.find(function (item) {
-                return item.id === playerSelect.value;
-            });
-
-            if (!player || player.owner_id !== currentUserId) {
-
-                notice.textContent = "You can only remove your own players.";
-
-                return;
-            }
-
-            const confirmed = window.confirm(
-                "Remove " + player.name +
-                " from your player list? Their saved scores will also be deleted."
-            );
-
-            if (!confirmed) return;
-
-            removeButton.disabled = true;
-            notice.textContent = "Removing player...";
-
-            const { data, error } = await db
-                .from("snake_players")
-                .delete()
-                .eq("id", player.id)
-                .eq("owner_id", currentUserId)
-                .select("id");
-
-            removeButton.disabled = false;
-
-            if (error) {
-
-                console.error("Remove player error:", error);
-                notice.textContent = "Unable to remove player.";
-
-                return;
-            }
-
-            if (!data || data.length === 0) {
-
-                notice.textContent = "You cannot remove this player.";
-
-                return;
-            }
-
-            selectedPlayerId = "";
-
-            notice.textContent = "Player removed successfully!";
-
-            await loadOnlinePlayers();
-
+        const player = players.find(function (item) {
+            return item.id === playerSelect.value;
         });
 
-    }
+        // Make sure the selected player belongs to this user.
+        if (!player || player.owner_id !== currentUserId) {
 
+            notice.textContent = "You can only remove your own players.";
 
+            return;
+        }
+
+        const confirmed = window.confirm(
+            "Remove " + player.name +
+            " from your player list? Their saved scores will also be deleted."
+        );
+
+        if (!confirmed) return;
+
+        removeButton.disabled = true;
+        notice.textContent = "Removing player...";
+
+        // DELETE the selected player's profile.
+        const { data, error } = await supabase
+            .from("snake_players")
+            .delete()
+            .eq("id", player.id)
+            .eq("owner_id", currentUserId)
+            .select("id");
+
+        removeButton.disabled = false;
+
+        if (error) {
+
+            console.error("Remove player error:", error);
+
+            notice.textContent = "Unable to remove player.";
+
+            return;
+        }
+
+        if (!data || data.length === 0) {
+
+            notice.textContent = "You cannot remove this player.";
+
+            return;
+        }
+
+        selectedPlayerId = "";
+
+        notice.textContent = "Player removed successfully!";
+
+        // Refresh the player list and leaderboard.
+        await loadOnlinePlayers();
+
+    });
+
+}
     // =====================================
     // 13. SAVE GAME SCORE ONLINE
     // =====================================
