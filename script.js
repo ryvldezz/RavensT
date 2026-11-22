@@ -966,7 +966,7 @@ if (currentYear) {
 
     async function loadOnlinePlayers() {
 
-        setStatus("Loading online players...");
+        setStatus("Connecting...");
 
         const { data, error } = await db
             .from("snake_players")
@@ -977,7 +977,7 @@ if (currentYear) {
 
             console.error("Player loading error:", error);
 
-            setStatus("Could not connect to online players.");
+            setStatus("Offline");
 
             return;
         }
@@ -988,7 +988,7 @@ if (currentYear) {
 
         await loadLeaderboard();
 
-        setStatus("Connected · Online leaderboard is updated.");
+        setStatus("Online");
 
     }
 
