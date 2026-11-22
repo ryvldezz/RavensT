@@ -1053,6 +1053,8 @@ if (currentYear) {
 
         currentUserId = session.user.id;
 
+        console.log("Current Supabase User ID:", currentUserId);
+
         addButton.disabled = false;
 
         await loadOnlinePlayers();
