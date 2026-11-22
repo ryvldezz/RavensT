@@ -1,3 +1,4 @@
+
 /* =========================================
    1. GLOBAL SETTINGS
 ========================================= */
@@ -5884,4 +5885,16 @@ body.dark-mode #snakeOnlineStatus::before {
         font-size: 10px;
         padding: 4px 9px;
     }
+}
+
+/* =========================================
+   SNAKE REMOVE PLAYER BUTTON VISIBILITY
+========================================= */
+
+#snakeRemovePlayer[hidden] {
+    display: none !important;
+}
+
+#snakeRemovePlayer:not([hidden]) {
+    display: inline-flex;
 }
