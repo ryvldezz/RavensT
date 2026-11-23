@@ -847,24 +847,28 @@ if (currentYear) {
 
         playerSelect.innerHTML = "";
 
-        if (players.length === 0) {
+        // Only show players owned by the current visitor.
+        const ownedPlayers = players.filter(function (player) {
+            return player.owner_id === currentUserId;
+        });
+
+        if (ownedPlayers.length === 0) {
 
             const option = document.createElement("option");
-
             option.value = "";
             option.textContent = "No players yet";
 
             playerSelect.appendChild(option);
 
+            selectedPlayerId = "";
             updateRemoveButton();
 
             return;
         }
 
-        players.forEach(function (player) {
+        ownedPlayers.forEach(function (player) {
 
             const option = document.createElement("option");
-
             option.value = player.id;
             option.textContent = player.name;
 
@@ -872,25 +876,20 @@ if (currentYear) {
 
         });
 
-        const playerExists = players.some(function (player) {
+        const playerExists = ownedPlayers.some(function (player) {
             return player.id === selectedPlayerId;
         });
 
         if (playerExists) {
-
             playerSelect.value = selectedPlayerId;
-
         } else {
-
-            selectedPlayerId = players[0].id;
+            selectedPlayerId = ownedPlayers[0].id;
             playerSelect.value = selectedPlayerId;
-
         }
 
         updateRemoveButton();
 
     }
-
 
     // =====================================
     // 7. LOAD ONLINE LEADERBOARD
@@ -1053,8 +1052,6 @@ if (currentYear) {
 
         currentUserId = session.user.id;
 
-        console.log("Current Supabase User ID:", currentUserId);
-
         addButton.disabled = false;
 
         await loadOnlinePlayers();
@@ -1176,6 +1173,7 @@ if (currentYear) {
     });
 
 
+
 // =====================================
 // 12. REMOVE OWN PLAYER
 // =====================================
@@ -1188,56 +1186,52 @@ if (removeButton) {
             return item.id === playerSelect.value;
         });
 
-        // Make sure the selected player belongs to this user.
         if (!player || player.owner_id !== currentUserId) {
-
             notice.textContent = "You can only remove your own players.";
-
             return;
         }
 
-        const confirmed = window.confirm(
+        if (!window.confirm(
             "Remove " + player.name +
-            " from your player list? Their saved scores will also be deleted."
-        );
-
-        if (!confirmed) return;
+            "? Their saved scores will also be deleted."
+        )) {
+            return;
+        }
 
         removeButton.disabled = true;
         notice.textContent = "Removing player...";
 
-        // DELETE the selected player's profile.
-        const { data, error } = await supabase
-            .from("snake_players")
-            .delete()
-            .eq("id", player.id)
-            .eq("owner_id", currentUserId)
-            .select("id");
+        try {
 
-        removeButton.disabled = false;
+            const { data, error } = await db
+                .from("snake_players")
+                .delete()
+                .eq("id", player.id)
+                .eq("owner_id", currentUserId)
+                .select("id");
 
-        if (error) {
+            if (error) throw error;
+
+            if (!data || data.length === 0) {
+                notice.textContent = "You cannot remove this player.";
+                return;
+            }
+
+            selectedPlayerId = "";
+            notice.textContent = "Player removed successfully!";
+
+            await loadOnlinePlayers();
+
+        } catch (error) {
 
             console.error("Remove player error:", error);
-
             notice.textContent = "Unable to remove player.";
 
-            return;
+        } finally {
+
+            removeButton.disabled = false;
+
         }
-
-        if (!data || data.length === 0) {
-
-            notice.textContent = "You cannot remove this player.";
-
-            return;
-        }
-
-        selectedPlayerId = "";
-
-        notice.textContent = "Player removed successfully!";
-
-        // Refresh the player list and leaderboard.
-        await loadOnlinePlayers();
 
     });
 
